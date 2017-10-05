@@ -1,4 +1,4 @@
-@mixin bp($point)
+@mixin bp-min($point)
   @if $point == desktop-xxl
   	@media (min-width: $desktop-xxl)
       @content
@@ -25,6 +25,35 @@
       @content
   @if $point == mobile-s
   	@media (min-width: $mobile-s)
+      @content
+
+@mixin bp-max($point)
+  @if $point == desktop-xxl
+  	@media (max-width: $desktop-xxl)
+      @content
+  @if $point == desktop-xl
+  	@media (max-width: $desktop-xl)
+      @content
+  @if $point == desktop-l
+    @media (max-width: $desktop-l)
+      @content
+  @if $point == desktop-m
+  	@media (max-width: $desktop-m)
+      @content
+  @if $point == desktop-s
+  	@media (max-width: $desktop-s)
+      @content
+  @if $point == tablet-l
+  	@media (max-width: $tablet-l)
+      @content
+  @if $point == tablet-s
+  	@media (max-width: $tablet-s)
+      @content
+  @if $point == mobile-l
+  	@media (max-width: $mobile-l)
+      @content
+  @if $point == mobile-s
+  	@media (max-width: $mobile-s)
       @content
 
 @mixin black-and-white()
