@@ -1,50 +1,43 @@
-html
-  color: $base-font-color
-  font-family: $base-font-family
-  font-size: 100%
-  line-height: $base-line-height
+//fonts
+@font-face
+  font-family: 'Share'
+  src: url('../fonts/Share-Bold.ttf')
+  font-weight: bold
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6
-  font-family: $heading-font-family
-  line-height: $heading-line-height
-  margin: 0 0 $small-spacing
+@import url('https://fonts.googleapis.com/css?family=Libre+Barcode+39+Extended+Text')
 
-h1
-  font-size: modular-scale(6)
-h2
-  font-size: modular-scale(5)
-h3
-  font-size: modular-scale(4)
-h4
-  font-size: modular-scale(3)
-h5
-  font-size: modular-scale(2)
-h6
-  font-size: modular-scale(1)
+//typography rules
+body
+  color: $color-font
+  font-family: $font-family-base
 
-p
-  margin: 0 0 $small-spacing
+.h1, .h2, .h3, .h4, .h5, .h6, .jumbo
+  font-family: $font-family-heading
 
-a
-  color: $action-color
-  text-decoration-skip: ink
-  transition: color $base-duration $base-timing
+.jumbo
+  font-size: 6.6rem
+  line-height: 7rem
 
-  &:hover
-    color: shade($action-color, 25%)
+.h1
+  font-size: 5rem
+  line-height: 5.5rem
 
-  &:focus
-    outline: $focus-outline
-    outline-offset: $focus-outline-offset
+.h2
+  font-size: 3.7rem
+  line-height: 4.4rem
 
-hr
-  border-bottom: $base-border
-  border-left: 0
-  border-right: 0
-  border-top: 0
-  margin: $base-spacing 0
+.h3
+  font-size: 2.8rem
+  line-height: 3.6rem
+
+.h4
+  font-size: 2.1rem
+  line-height: 2.6rem
+
+.p
+  font-size: $font-size-base
+  line-height: 2.4rem
+
+.label
+  font-size: 1.2rem
+  line-height: 1.8rem

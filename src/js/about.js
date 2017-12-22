@@ -1,5 +1,3 @@
-'use strict';
-
 /* constants */
 const about = 'this is the about.js';
 
