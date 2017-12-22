@@ -1,70 +1,81 @@
-// Typography
-// $base-font-family: $font-stack-system
-$base-font-family: 'Share'
-$heading-font-family: $base-font-family
+//typography
+$font-family-base: 'Share', sans-serif
+$font-family-heading: $font-family-base
+$font-size-base: 1.6rem
 
-// media queries
-$desktop-xxl: 1900px
-$desktop-xl: 1600px
-$desktop-l: 1400px
-$desktop-m: 1200px
-$desktop-s: 1000px
-$tablet-l: 800px
-$tablet-s: 600px
-$mobile-l: 500px
-$mobile-s: 400px
+//media queries
+// small = 576px / 16px = 36em
+// medium = 768px / 16px = 48em
+// large = 992px / 16px = 62em
+// extra-large = 1200px / 16px = 75em
+$breakpoints: ('small': (min-width: 36em), 'medium': (min-width: 48em), 'large': (min-width: 62em), 'extra-large': (min-width: 75em), 'grid': (min-width: 48em))
 
-// Line height
-$base-line-height: 1.5
-$heading-line-height: 1.2
+//nice colors
+$color-aqua:  #7FDBFF
+$color-blue:  #0074D9
+$color-navy:  #001F3F
+$color-teal:  #39CCCC
+$color-green: #2ECC40
+$color-olive: #3D9970
+$color-lime:  #01FF70
+$color-yellow:  #FFDC00
+$color-orange:  #FF851B
+$color-red:     #FF4136
+$color-fuchsia: #F012BE
+$color-purple:  #B10DC9
+$color-maroon:  #85144B
+$color-black:  #111
+$color-dark-gray: #333
+$color-medium-gray: #999
+$color-light-gray: #ddd
+$color-white:  #fff
 
-// Other Sizes
-$base-border-radius: 3px
-$base-spacing: 1.5em
-$small-spacing: $base-spacing / 2
-$base-z-index: 0
+//color pallete
+$color-primary: $color-lime
+$color-primary-light: shade($color-primary, .5)
+$color-primary-dark: tint($color-primary, .5)
 
-// Colors
-$aqua:  #7FDBFF
-$blue:  #0074D9
-$navy:  #001F3F
-$teal:  #39CCCC
-$green: #2ECC40
-$olive: #3D9970
-$lime:  #01FF70
-$yellow:  #FFDC00
-$orange:  #FF851B
-$red:     #FF4136
-$fuchsia: #F012BE
-$purple:  #B10DC9
-$maroon:  #85144B
-$black:  #111
-$dark-gray: #333
-$medium-gray: #999
-$light-gray: #ddd
-$white:  #fff
+$color-secondary: $color-purple
+$color-secondary-light: shade($color-secondary, .5)
+$color-secondary-dark: tint($color-secondary, .5)
 
-// Font Colors
-$base-font-color: $dark-gray
-$action-color: $blue
+$color-light: $color-light-gray
+$color-lighter: $color-white
+$color-dark: $color-black
 
-// Border
-$base-border-color: $light-gray
-$base-border: 1px solid $base-border-color
+$color-system-danger: $color-red
+$color-system-success: $color-green
+$color-system-info: $color-blue
+$color-system-warning: $color-yellow
 
-// Background Colors
-$base-background-color: #fff
-$secondary-background-color: tint($base-border-color, 75%)
+//font colors
+$color-font: $color-dark-gray
 
-// Focus
-$focus-outline-color: transparentize($action-color, 0.4)
-$focus-outline-width: 3px
+//border
+$border-base: 1px solid $color-light-gray
+
+//focus
+$focus-outline-color: transparentize($color-primary, 0.4)
+$focus-outline-width: .2rem
 $focus-outline: $focus-outline-width solid $focus-outline-color
-$focus-outline-offset: 2px
+$focus-outline-offset: .2rem
 
-// Animations
-$base-duration: 150ms
-$base-timing: $ease-in-out-back
+//transition
+$transition-duration-base: 200ms
+$transition-timing-base: $ease-in-out-back
 
-//Grid configuration
-$neat-grid: (columns: 12, gutter: 20px)
+//grid configuration
+$grid-width: 115.2rem
+$grid-width-small: 48rem
+$grid-gutter-vertical: 6.4rem
+$grid-gutter-vertical-small: 4rem
+$grid-gutter-horizontal: 3.2rem
+
+//borders
+$border-radius-base: .4rem
+
+//spacings
+$spacing-small: .8rem
+$spacing-medium: 1.6rem
+$spacing-large: 3.2rem
+$spacing-extra-large: 6.4rem

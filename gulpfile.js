@@ -94,14 +94,14 @@ gulp.task('fonts', function() {
   .pipe(gulp.dest(folder.dist + '/fonts/'));
 });
 
-// Fonts
-gulp.task('fontAwesome', function() {
-  gulp.src('node_modules/font-awesome/fonts/*')
+//Icons
+gulp.task('icons', function() {
+  return gulp.src('node_modules/font-awesome/fonts/**.*')
   .pipe(gulp.dest(folder.dist + '/fonts/'));
 });
 
 //Default task
-gulp.task('default',['pug', 'sass', 'images', 'js', 'fonts', 'fontAwesome', 'browser-sync'], function() {
+gulp.task('default',['pug', 'sass', 'images', 'js', 'fonts', 'icons', 'browser-sync'], function() {
   if(!isProd) {
     gulp.watch(folder.src  + '**/*.pug', ['pug']);
     gulp.watch(folder.src  + '**/*.sass', ['sass']);

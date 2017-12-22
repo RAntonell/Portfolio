@@ -1,0 +1,26 @@
+a
+  &:link,
+  &:visited
+    display: inline-block
+    text-decoration: none
+    transition: all $transition-duration-base $transition-timing-base
+
+  &:active, &:hover
+    outline-width: 0
+
+.btn
+  &:link,
+  &:visited
+    color: contrast-switch($color-primary)
+    background-color: $color-primary
+
+  &:hover
+    background-color: shade($color-primary, 25%)
+
+.btn-text
+  &:link,
+  &:visited
+    color: $color-primary
+
+  &:hover
+    color: shade($color-primary, 25%)

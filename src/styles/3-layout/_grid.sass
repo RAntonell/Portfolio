@@ -1,0 +1,47 @@
+.row
+  max-width: $grid-width-small
+  padding: 0 1.6rem
+  margin: 0 auto
+  +clearfix
+  +respond-to(grid)
+    max-width: $grid-width
+
+  &:not(:last-child)
+    margin-bottom: $grid-gutter-vertical-small
+    +respond-to(grid)
+      margin-bottom: $grid-gutter-vertical
+
+  [class^="col-"]
+    float: left
+    width: 100%
+
+    &:not(:last-child)
+      margin-right: 0
+      margin-bottom: $grid-gutter-vertical-small
+      +respond-to(grid)
+        margin-right: $grid-gutter-horizontal
+        margin-bottom: 0
+
+  .col-1-of-2
+    +respond-to(grid)
+      width: calc((100% - #{$grid-gutter-horizontal}) / 2)
+
+  .col-1-of-3
+    +respond-to(grid)
+      width: calc((100% - 2 * #{$grid-gutter-horizontal}) / 3)
+
+  .col-2-of-3
+    +respond-to(grid)
+      width: calc(2 * ((100% - 2 * #{$grid-gutter-horizontal}) / 3) + #{$grid-gutter-horizontal})
+
+  .col-1-of-4
+    +respond-to(grid)
+      width: calc((100% - 3 * #{$grid-gutter-horizontal}) / 4)
+
+  .col-2-of-4
+    +respond-to(grid)
+      width: calc(2 * ((100% - 3 * #{$grid-gutter-horizontal}) / 4) + #{$grid-gutter-horizontal})
+
+  .col-3-of-4
+    +respond-to(grid)
+      width: calc(3 * ((100% - 3 * #{$grid-gutter-horizontal}) / 4) + 2 * #{$grid-gutter-horizontal})
