@@ -15,6 +15,7 @@ const gulp             = require('gulp'),
       gutil            = require('gulp-util'),
       merge            = require('merge2'),
       buffer           = require('gulp-buffer'),
+      mmq              = require('gulp-merge-media-queries'),
       // development mode?
       isProd           = gutil.env.type === 'prod',
       // folders
@@ -83,6 +84,9 @@ gulp.task('sass', function() {
   }) : gutil.noop())
   .pipe(autoprefixer({
     versions: ['last 2 browsers']
+  }))
+  .pipe(mmq({
+      log: true
   }))
   .pipe(!isProd ? sourcemaps.write('./') : gutil.noop())
   .pipe(gulp.dest(folder.dist  + 'styles/'));
