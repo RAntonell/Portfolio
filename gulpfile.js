@@ -86,7 +86,7 @@ gulp.task('sass', function() {
     versions: ['last 2 browsers']
   }))
   .pipe(mmq({
-      log: true
+      log: false
   }))
   .pipe(!isProd ? sourcemaps.write('./') : gutil.noop())
   .pipe(gulp.dest(folder.dist  + 'styles/'));
