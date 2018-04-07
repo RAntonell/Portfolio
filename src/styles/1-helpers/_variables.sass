@@ -32,24 +32,23 @@ $color-white:  #fff
 
 //color pallete
 $color-primary: $color-lime
-$color-primary-light: shade($color-primary, .5)
-$color-primary-dark: tint($color-primary, .5)
+$color-primary-light: tint($color-primary, 50%)
+$color-primary-dark: shade($color-primary, 50%)
 
 $color-secondary: $color-purple
-$color-secondary-light: shade($color-secondary, .5)
-$color-secondary-dark: tint($color-secondary, .5)
+$color-secondary-light: tint($color-secondary, 50%)
+$color-secondary-dark: shade($color-secondary, 50%)
 
-$color-light: $color-light-gray
-$color-lighter: $color-white
-$color-dark: $color-black
+$color-gray-scale-2: $color-white
+$color-gray-scale-20: $color-light-gray
+$color-gray-scale-50: $color-medium-gray
+$color-gray-scale-75: $color-dark-gray
+$color-gray-scale-90: $color-black
 
 $color-system-danger: $color-red
 $color-system-success: $color-green
 $color-system-info: $color-blue
 $color-system-warning: $color-yellow
-
-//font colors
-$color-font: $color-dark-gray
 
 //border
 $border-base: 1px solid $color-light-gray
@@ -75,8 +74,9 @@ $grid-gutter-horizontal: 3.2rem
 $border-radius-base: .4rem
 
 //spacings
-$spacing-s: .4rem
+$spacing-t: .4rem
+$spacing-s: .8rem
 $spacing-m: 1.6rem
-$spacing-l: 3.2rem
-$spacing-xl: 6.4rem
-$spacing-xxl: 6.4rem
+$spacing-l: 2.4rem
+$spacing-xl: 3.2rem
+$spacing-xxl: 4.8rem
