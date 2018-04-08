@@ -16,6 +16,7 @@ const gulp             = require('gulp'),
       merge            = require('merge2'),
       buffer           = require('gulp-buffer'),
       mmq              = require('gulp-merge-media-queries'),
+      svgmin           = require('gulp-svgmin'),
       // development mode?
       isProd           = gutil.env.type === 'prod',
       // folders
@@ -27,10 +28,17 @@ const gulp             = require('gulp'),
 // image processing
 gulp.task('images', function() {
   var out = folder.dist + 'img/';
-  gulp.src(folder.src + 'img/**/*')
+  gulp.src(folder.src + 'img/**/*.{png,gif,jpg}')
     .pipe(newer(out))
     .pipe(imagemin())
     .pipe(gulp.dest(out));
+});
+
+//optimize the svg in the same folder
+gulp.task('svg', function () {
+  return gulp.src(folder.src + 'img/**/*.svg')
+    .pipe(svgmin())
+    .pipe(gulp.dest(folder.src + 'img/'));
 });
 
 // JavaScript processing
@@ -98,18 +106,12 @@ gulp.task('fonts', function() {
   .pipe(gulp.dest(folder.dist + '/fonts/'));
 });
 
-//Icons
-gulp.task('icons', function() {
-  return gulp.src('node_modules/font-awesome/fonts/**.*')
-  .pipe(gulp.dest(folder.dist + '/fonts/'));
-});
-
 //Default task
-gulp.task('default',['pug', 'sass', 'images', 'js', 'fonts', 'icons', 'browser-sync'], function() {
+gulp.task('default',['pug', 'sass', 'images', 'svg', 'js', 'fonts', 'browser-sync'], function() {
   if(!isProd) {
     gulp.watch(folder.src  + '**/*.pug', ['pug']);
     gulp.watch(folder.src  + '**/*.sass', ['sass']);
-    gulp.watch('src/img/**/*', ['images']);
+    gulp.watch('src/img/**/*', ['images', 'svg']);
     gulp.watch(folder.src  + '**/*.js', ['js']);
     gulp.watch('src/fonts/**/*', ['fonts']);
   }
