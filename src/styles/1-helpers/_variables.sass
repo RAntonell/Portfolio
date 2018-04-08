@@ -4,10 +4,10 @@ $font-family-heading: $font-family-base
 $font-size-base: 1.6rem
 
 //media queries
-// small = 576px / 16px = 36em
-// medium = 768px / 16px = 48em
-// large = 992px / 16px = 62em
-// extra-large = 1200px / 16px = 75em
+// s(small) = 576px / 16px = 36em
+// m(medium) = 768px / 16px = 48em
+// l(large) = 992px / 16px = 62em
+// xl(extra-large) = 1200px / 16px = 75em
 $breakpoints: ('s': (min-width: 36em), 'm': (min-width: 48em), 'l': (min-width: 62em), 'xl': (min-width: 75em), 'grid': (min-width: 48em))
 
 //nice colors
@@ -31,30 +31,27 @@ $color-light-gray: #ddd
 $color-white:  #fff
 
 //color pallete
-$color-primary: $color-lime
-$color-primary-light: tint($color-primary, 50%)
-$color-primary-dark: shade($color-primary, 50%)
+$color-layout: $color-fuchsia
 
-$color-secondary: $color-purple
-$color-secondary-light: tint($color-secondary, 50%)
-$color-secondary-dark: shade($color-secondary, 50%)
+$color-interactive: $color-lime
+$color-interactive-minus-1: shade($color-interactive, 30%)
+$color-interactive-minus-2: shade($color-interactive, 50%)
+$color-interactive-plus-1: tint($color-interactive, 30%)
+$color-interactive-plus-2: tint($color-interactive, 50%)
 
-$color-gray-scale-2: $color-white
-$color-gray-scale-20: $color-light-gray
-$color-gray-scale-50: $color-medium-gray
-$color-gray-scale-75: $color-dark-gray
-$color-gray-scale-90: $color-black
+$color-gray-scale-2: $color-light-gray
+$color-gray-scale-10: $color-medium-gray
+$color-gray-scale-60: $color-dark-gray
+$color-gray-scale-90: #1A1A1A
 
-$color-system-danger: $color-red
+$color-system-error: $color-red
 $color-system-success: $color-green
-$color-system-info: $color-blue
-$color-system-warning: $color-yellow
 
 //border
-$border-base: 1px solid $color-light-gray
+$border-base: 1px solid $color-gray-scale-10
 
 //focus
-$focus-outline-color: transparentize($color-primary, 0.4)
+$focus-outline-color: transparentize($color-interactive, 0.4)
 $focus-outline-width: .2rem
 $focus-outline: $focus-outline-width solid $focus-outline-color
 $focus-outline-offset: .2rem
