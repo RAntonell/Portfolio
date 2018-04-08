@@ -11,3 +11,19 @@ mixin list
     
 mixin pet(name)
   li.pet= name
+
+//- insert svg icons into html
+mixin svg(name)
+  
+  case name
+    when 'facebook'
+      include ../img/svg/facebook.svg
+  
+    when 'twitter'
+      include ../img/svg/twitter.svg
+  
+    when 'instagram'
+      include ../img/svg/instagram.svg
+      
+    default
+      p don't find this icon
