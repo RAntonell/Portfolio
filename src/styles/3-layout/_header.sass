@@ -1,1 +1,27 @@
 .header
+  margin-top: 2.4rem
+
+  +element('logo-box')
+    height: 6.4rem
+    transform: rotate(0)
+    transition: all .8s $transition-timing-base-bounce
+    +respond-to('m')
+      margin-bottom: 2.4rem
+      width: 6.4rem
+
+    &:hover
+      transform: rotate(180deg)
+
+  +element('logo')
+    height: 6.4rem
+
+  +element('upper-box')
+    display: flex
+    justify-content: space-between
+    +respond-to('m')
+      flex-direction: column
+
+  h1
+    max-width: 87rem
+    margin-top: 16rem
+    margin-bottom: 20.4rem

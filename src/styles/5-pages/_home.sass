@@ -1,1 +1,86 @@
+.projects
+  margin-bottom: 18.4rem
 
+  h2
+    margin-bottom: 12rem
+
+.project-thumbnail
+  display: flex
+  justify-content: space-between
+  align-items: center
+  +respond-to('l')
+    flex-direction: column
+    align-items: flex-start
+
+  &:not(:last-child)
+    margin-bottom: 18.4rem
+
+  +element('text-box')
+    max-width: 48rem
+    margin-right: 5rem
+    +respond-to('l')
+      max-width: none
+      margin-right: 0
+      order: 2
+      margin-top: 8rem
+    +respond-to('m')
+      margin-top: 4rem
+
+  +element('img')
+    max-width: 58.4rem
+
+  .p
+    margin-bottom: 1.6rem
+
+  +element('role')
+    display: flex
+    align-items: center
+    margin-bottom: 3.2rem
+
+    .label:nth-child(3)
+      margin-left: 2.4rem
+      position: relative
+
+      &:before
+        content: ''
+        position: absolute
+        width: .2rem
+        height: .8rem
+        top: 45%
+        transform: translateY(-50%)
+        left: -1.3rem
+        background-color: $color-gray-scale-darker
+
+.ways-help-you
+
+  h2
+    margin-bottom: 8.8rem
+
+  +element('box')
+    display: flex
+    justify-content: space-between
+    +respond-to('m')
+      flex-direction: column
+
+
+.way-help-you
+  max-width: 54.1rem
+
+  &:not(:last-child)
+    margin-right: 5rem
+    +respond-to('m')
+      margin-right: 0
+      margin-bottom: 5.6rem
+
+  +element('img')
+    width: 8rem
+
+  +element('img-box')
+    height: 10.4rem
+    display: flex
+    align-items: center
+    margin-bottom: 1.6rem
+
+  &:first-child
+    .way-help-you__img
+      // margin-bottom: 100px

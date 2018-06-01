@@ -1,1 +1,21 @@
-.navigation
+.nav
+
+  +element('list')
+    list-style: none
+
+  +element('item')
+    display: inline-block
+    +respond-to('s')
+      display: block
+
+    &:last-child
+      +respond-to('m')
+        display: block
+
+    &:not(:last-child)
+      margin-right: 4.8rem
+      +respond-to('m')
+        margin-bottom: 2.4rem
+
+  +element('link')
+    @extend .btn-text

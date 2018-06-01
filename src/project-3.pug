@@ -1,0 +1,24 @@
+include pug/mixins
+
+doctype html
+html(lang="en")
+  +head('SF•assets')
+  
+  body
+    +header
+      
+    main
+      +project-details(
+        'SF•assets', 
+        'SF•assets is a private equity firm, the client wanted a webstie that gives a  trustworthy feel with a to the audience, also desired to point out the results of the firm and highlight the location of the company, San Francisco. ', 
+        'To highlight the location, I included San Francisco in the Value proposition, the section "about" takes care of showing the results of the company, and the basic and clean layout, to inspire a feeling of trustworthy to the audience.', 
+        'January, 2018',
+        'sfassets-desktop.jpg',
+        'the desktop version of the sfassets website'
+      )
+      
+    +footer
+    
+    //- JS
+    script(src="js/main.js")
+      

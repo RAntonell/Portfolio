@@ -1,0 +1,25 @@
+.bio
+  display: flex
+  align-items: flex-start
+  +respond-to('xl')
+    flex-direction: column
+
+  p
+    +respond-to('xl')
+      width: 70%
+      margin: 0 auto
+    +respond-to('m')
+      width: 100%
+
+    &:not(:last-child)
+      margin-bottom: 1.6rem
+
+  +element('img')
+    margin-left: 10%
+    +respond-to('xl')
+      order: -1
+      width: 70%
+      margin: 0 auto
+      margin-bottom: 8rem
+    +respond-to('m')
+      width: 100%

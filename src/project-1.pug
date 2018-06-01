@@ -1,0 +1,24 @@
+include pug/mixins
+
+doctype html
+html(lang="en")
+  +head('Wanderlust')
+  
+  body
+    +header
+    
+    main
+      +project-details(
+        'Wanderlust', 
+        'Wanderlust is a luxury travel agency, the client wanted to showcase all necessary info on the home page and make feel the visitor the sensation of a luxury and exotic travel, without losing the simplicity. ', 
+        'the approach to accomplish the luxury, minimalist, and exotic feeling that the client requested was to choose exotic images, make a minimalist layout, and combine a serif font, with subtle colors.', 
+        'January, 2017',
+        'wanderlust-desktop.jpg',
+        'the desktop version of the wanderlust website'
+      )
+        
+    +footer
+    
+    //- JS
+    script(src="js/main.js")
+      

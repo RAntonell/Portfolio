@@ -1,0 +1,168 @@
+%u-challenge-solution
+  margin-right: 8rem
+  max-width: 40rem
+  +respond-to('l')
+    max-width: none
+    margin-right: 0
+    margin-bottom: 4rem
+
+%u-device
+  left: 50%
+  transform: translateX(-50%)
+  overflow-y: scroll
+  +respond-to('m')
+    width: 100%
+    overflow-y: visible
+    position: relative
+
+.title-and-btn-box
+  display: flex
+  align-items: center
+  justify-content: space-between
+  +respond-to('l')
+    flex-direction: column
+    align-items: flex-start
+
+  .jumbo
+    +respond-to('s')
+      font-size: 4.5rem
+
+  .btn
+    margin-top: 14.5rem
+    margin-bottom: 8rem
+    +respond-to('l')
+      margin-top: 0
+      margin-bottom: 4rem
+    // +respond-to('m')
+    //   position: absolute
+    //   bottom: -9%
+    //   position: absolute
+
+  // .visit-the-site
+  //   +respond-to('m')
+  //     bottom: -1.2%
+  //   +respond-to('s')
+  //     bottom: -1.5%
+
+.info-box
+  display: flex
+  +respond-to('l')
+    flex-direction: column
+
+  +element('challenge')
+    @extend %u-challenge-solution
+
+  +element('solution')
+    @extend %u-challenge-solution
+
+  +element('role')
+    display: flex
+    margin-bottom: .8rem
+    min-width: 18.7rem
+
+
+  +element('date')
+    display: flex
+
+.devices
+  position: relative
+  margin-top: 14rem
+  +respond-to('m')
+    margin-top: 8rem
+    // margin-bottom: 20rem
+
+  //laptop
+  +element('laptop-img')
+    +respond-to('m')
+      display: none
+
+  +element('laptop-screen')
+    +aspect-ratio(4, 2.495)
+    @extend %u-device
+    position: absolute
+    width: 76.5%
+    border-radius: .8%
+    top: 4.8%
+
+    &:before
+      +respond-to('m')
+        padding-top: 0
+
+  +element('laptop-website')
+    position: absolute
+    top: 0
+    +respond-to('m')
+      position: relative
+
+  //phone
+  +element('phone-img')
+    +respond-to('m')
+      display: none
+
+  +element('phone-screen')
+    +aspect-ratio(4, 7.1)
+    @extend %u-device
+    position: absolute
+    top: 13.1%
+    width: 81.5%
+
+    &:before
+      +respond-to('m')
+        padding-top: 0
+
+  +element('scrollable')
+    position: absolute
+    +respond-to('m')
+      display: none
+
+  +element('phone')
+    position: absolute
+    bottom: 0
+    left: -.6rem
+    max-width: 16.3%
+    +respond-to('m')
+      position: relative
+      max-width: 100%
+      left: 0
+      margin-top: 4rem
+
+
+  +element('phone-website')
+    position: absolute
+    top: 0
+    +respond-to('m')
+      position: relative
+      width: 100%
+
+  //scrollable-indicator
+  +element('scrollable')
+    position: absolute
+    pointer-events: none
+    top: 45%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: 12rem
+    height: 12rem
+    background-color: black(.7)
+    border-radius: .4rem
+    +respond-to('l')
+      width: 9rem
+      height: 9rem
+
+    .p--white
+      position: absolute
+      bottom: .8rem
+      text-align: center
+      width: 100%
+
+  +element('scrollable-icon')
+    animation: scroll .6s infinite
+    animation-direction: alternate
+    animation-timing-function: $transition-timing-base
+    max-width: 20%
+    margin: 0 auto
+    display: block
+    margin-top: 2.4rem
+
+.project-details
+  position: relative

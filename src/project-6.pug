@@ -1,0 +1,27 @@
+include pug/mixins
+
+doctype html
+html(lang="en")
+  +head('About')
+  
+  body
+    +header
+      
+    main
+      +project-details(
+        'Alminim', 
+        'Alminim is a home for an online fashion store concept, the challenge was to transmit a design with a minimal and clean look, with an easy search for products, and learn how to present all information without making feel the site cluttered.', 
+        'With a white predominance, subtle separators for the different sections, and only the strict information displayed, the site tries a minimal and uncluttered look, the big product search bar centered, makes the search of a product an ease. ', 
+        'March, 2018',
+        'alminim-desktop.jpg',
+        'the desktop version of the alminim website',
+        'alminim-phone.jpg',
+        'the mobile version of the alminim website',
+        'https://rantonell.github.io/Alminim/'
+      )
+      
+    +footer
+    
+    //- JS
+    script(src="js/main.js")
+      
