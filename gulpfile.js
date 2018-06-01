@@ -106,7 +106,7 @@ gulp.task('fonts', function() {
   .pipe(gulp.dest(folder.dist + '/fonts/'));
 });
 
-//Default task
+// Default task
 gulp.task('default',['images', 'svg', 'pug', 'sass', 'js', 'fonts', 'browser-sync'], function() {
   if(!isProd) {
     gulp.watch(folder.src  + '**/*.pug', ['pug']);

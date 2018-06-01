@@ -1,0 +1,27 @@
+include pug/mixins
+
+doctype html
+html(lang="en")
+  +head('Iduconf')
+  
+  body
+    +header
+      
+    main
+      +project-details(
+        'Iduconf', 
+        'Iduconf is a concept for a user interface conference event in Barcelona, the concept of this website was to transmit that Barcelona is a futuristic city with authority in the field of UI/UX.', 
+        'The approach to accomplish the a futuristic city look was with the storng color pallete combination, the hover effects on the speakers section and a not conventional layout.', 
+        'February, 2017',
+        'iduconf-desktop.jpg',
+        'the desktop version of the wanderlust website',
+        'iduconf-phone.jpg',
+        'the mobile version of the wanderlust website',
+        'https://rantonell.github.io/Iduconf/'
+      )
+      
+    +footer
+    
+    //- JS
+    script(src="js/main.js")
+      

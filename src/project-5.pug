@@ -1,0 +1,24 @@
+include pug/mixins
+
+doctype html
+html(lang="en")
+  +head('About')
+  
+  body
+    +header
+      
+    main
+      +project-details(
+        'Simple Clean', 
+        'Simple clean is an online cleaning service, The client was searching for a simple design with a startup feel and offer a trustworthy feeling to the audience through testimonials, but also solving the problem of booking the service with ease.', 
+        'The aim was to present a strong value proposition, given the chance of booking with ease as soon as possible, emphasizing in the satisfaction of the current clients. The clean look layout gives a startup feels overall.', 
+        'March, 2018',
+        'simple-clean-desktop.jpg',
+        'the desktop version of the Simple Clean website'
+      )
+      
+    +footer
+    
+    //- JS
+    script(src="js/main.js")
+      

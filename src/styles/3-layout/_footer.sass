@@ -1,10 +1,59 @@
 .footer
-  //svg example
+  margin: 18.4rem 0 18.4rem
+  +respond-to('m')
+    margin: 14rem 0 14rem
+
+  h2
+    max-width: 93.1rem
+    margin-bottom: 4rem
+    +respond-to('s')
+      max-width: 36rem
+
   svg
+    height: 100%
     transition: all $transition-timing-base $transition-duration-base
-    width: 25rem
-    height: 25rem
     fill: $color-gray-scale-darker
 
-  svg:hover
-    fill: $color-gray-scale-lighter
+  +element('contact-ways')
+    display: flex
+    +respond-to('m')
+      flex-direction: column
+
+  +element('mail-box')
+    margin-right: .8rem
+
+    .btn
+      +respond-to('m')
+        width: 100%
+        max-width: 30rem
+        text-align: center
+
+    .btn span:first-child
+      +respond-to('m')
+        display: none
+
+    .btn span:last-child
+      display: none
+      +respond-to('m')
+        display: block
+
+
+  +element('social-box')
+
+
+  +element('social-link')
+    &:link,
+    &:visited
+      text-align: center
+      width: 6.9rem
+      height: 6.9rem
+      @extend %u-btn
+      +respond-to('m')
+        margin-top: .8rem
+
+    &:hover
+      svg
+        fill: $color-interactive
+
+    &:not(:last-child)
+      margin-right: .8rem

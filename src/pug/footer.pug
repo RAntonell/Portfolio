@@ -1,8 +1,21 @@
 mixin footer
   footer.footer
-    p © 2017 
-    //- svg example
-    +svg('facebook')
-    +svg('twitter')
-    +svg('instagram')
+    .row
+
+      h2.h2 I’m always interested in new challenges feel free to contact me
+      
+      .footer__contact-ways#contact
+        .footer__mail-box
+          a(href="mailto:roger.antonell@gmailcom?Subject=mail%20from%20rogerantonell.com", target="_top").btn
+            span roger.antonell@gmail.com
+            span email me
+        .footer__social-box
+          a(href="https://www.facebook.com/roger.antonell", target="_blank").footer__social-link
+            +svg('facebook')
+          a(href="https://twitter.com/roger_antonell", target="_blank").footer__social-link
+            +svg('twitter')
+          a(href="https://www.instagram.com/roger_antonell", target="_blank").footer__social-link
+            +svg('instagram')
+          a(href="https://www.linkedin.com/in/roger-antonell-huerta", target="_blank").footer__social-link
+            +svg('linkedin')
       

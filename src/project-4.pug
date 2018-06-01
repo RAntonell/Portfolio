@@ -1,0 +1,27 @@
+include pug/mixins
+
+doctype html
+html(lang="en")
+  +head('Golid')
+  
+  body
+    +header
+      
+    main
+      +project-details(
+        'Golid', 
+        'Golid is a concept for a local gym business, For this concept the main purpose was to encourage the visitors to be energetic, be active, and motivate them to come and try to improve their health and physic.', 
+        'To try to accomplish the challenge, I added inclined decorations, that inspire movement, the color yellow and red, give it an energetic feel, and the content is designed to convince the visitors to try a free pass and change their lives.', 
+        'June, 2017',
+        'golid-desktop.jpg',
+        'the desktop version of the golid website',
+        'golid-phone.jpg',
+        'the mobile version of the golid website',
+        'https://rantonell.github.io/Golid/'
+      )
+      
+    +footer
+    
+    //- JS
+    script(src="js/main.js")
+      
