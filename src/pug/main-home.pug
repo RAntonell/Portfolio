@@ -5,14 +5,14 @@ mixin project-thumbnail(title, description, href, src, alt, developer)
       p.p= description
       if developer
         .project-thumbnail__role
-          .label--bold Role:
-          .label Web interface designer
-          .label Web interface developer
+          .label--bold Rol:
+          .label Diseñador web
+          .label Desarrollador web
       else
         .project-thumbnail__role
-          .label--bold Role:
-          .label Web interface designer
-      a(href=''+ href + '').btn View project
+          .label--bold Rol:
+          .label Diseñador web
+      a(href=''+ href + '').btn Ver Proyecto
     .project-thumbnail__img
       img(src='img/'+ src +'', alt=''+ alt +'')
         
@@ -26,71 +26,71 @@ mixin way-help-you(icon, title, description)
 mixin main-home
   main
     .projects#projects
-      h2.h2 Selected projects
+      h2.h2 Algunos de mis proyectos
       .projects__box
         +project-thumbnail(
           'Wanderlust',
-          'Wanderlust is a luxury travel agency, the approach for the website was to inspirie luxury, exotic and minimalist vibe. I designed the desktop version of the web interface.',
+          'Wanderlust es una agencia de viajes de lujo, el enfoque para el diseño web fue inspirar un ambiente de lujo, exótico y minimalista. Diseñé la versión de escritorio de la interfaz web.',
           'project-1.html',
           'project-1-thumbnail.jpg',
-          'laptop showing the wanderlust website'
+          'Un ordenador mostrando la web de Wanderlust'
         )
         
         +project-thumbnail(
           'Iduconf',
-          'Iduconf is a concept for a user interface conference event in Barcelona, as an exercise to improve my skills. I designed and code the web interface.',
+          'Iduconf es un concepto para un evento sobre la interfaz de usuario en Barcelona, Diseñé y programé la web como un ejercicio para mejora mis habilidades.',
           'project-2.html',
           'project-2-thumbnail.jpg',
-          'laptop showing the Iduconf website',
+          'Un ordenador mostrando la web de Iduconf',
           'true'
         )
         
         +project-thumbnail(
           'SF•assets',
-          'SF•assets is a private equity firm, I designed the web interface with the aim to transmit trust to the audience.  I designed the desktop version of the web interface.',
+          'SF•assets es una firma de capital privado, El diseño web tiene el objetivo de transmitir confianza a la audiencia. Diseñé la versión de escritorio de la interfaz web.',
           'project-3.html',
           'project-3-thumbnail.jpg',
-          'laptop showing the SF•assets website'
+          'Un ordenador mostrando la web de SF•assets'
         )
         
         +project-thumbnail(
           'Golid',
-          'Golid is another concept for a local gym business, I build concetps, to level up my knowledge, that’s a good practice I often do. I designed and code the web interface. ',
+          'Golid es un concepto para un gimnasio local, El objetivo de crear estos conceptos es mejorar en mis habilidades y mostrar mis habilidades a futuros clientes o colaboradores, Diseñé y programé la web.',
           'project-4.html',
           'project-4-thumbnail.jpg',
-          'laptop showing the Golid website',
+          'Un ordenador mostrando la web de Golid',
           'true'
         )
         
         +project-thumbnail(
           'Simple Clean',
-          'Simple clean is an online cleaning service startup, I designed the web interface with the goal to give an startup look, I designed the desktop version of the web interface. ',
+          'Simple Clean es una startup que proporciona servicios de limpieza online, el diseño esta enfocado a transmitir una sensación de startup, diseñé la versión de escritorio de la pàgina web.',
           'project-5.html',
           'project-5-thumbnail.jpg',
-          'laptop showing the simple clean website'
+          'Un ordenador mostrando la web de Simple Clean'
         )
         
         +project-thumbnail(
           'Alminim',
-          'Alminim is an online fashion store concept, the approach for this concept is a minimal style, as usual, in this concept I designed and code the web interface.',
+          'Alminim es un concepto de tienda de moda en línea, el enfoque para este concepto es un estilo minimalista, como de costumbre en mis conceptos diseñé y desarrollé la web.',
           'project-6.html',
           'project-6-thumbnail.jpg',
-          'laptop showing a wanderlust web',
+          'Un ordenador mostrando la web de Alminim',
           'true'
         )
       
     .ways-help-you
-      h2.h2 Ways I can help you
+      h2.h2 Como puedo ayudarte
       .ways-help-you__box
         +way-help-you(
           'designer',
-          'Design the web interface', 
-          'From the discovery and research step of the goals of the audience to the Visual aspect of the website, my process isn’t just the final result, because a Website doesn’t have to be just beautiful, but also solve the main purpose.'
+          'Diseñar la interfaz web', 
+          'Desde el proceso inicial de  descubrimiento e investigación de los objetivos de la audiencia a la que queremos llegar hasta el aspecto visual de la web, mi proceso no  es solamente el resultado final, porque un sitio web no tiene que ser simplemente bonito, sino también resolver el objetivo principal por el cual fue creado.'
           )
         +way-help-you(
           'developer',
-          'Develop the web interface', 
-          'Like in design, I value solving the problems with only the necessary, clean and reusable code is my aim, My approach of coding the web interface is to be as lightweight as possible and having the real control of all the variable involved in the development.'
+          'Desarrollar la interfaz web', 
+          'Al igual que en el diseño, valoro resolver los problemas solo con el código necesario, limpio y reutilizable. Mi enfoque de programación de la interfaz web es conseguir un código ligero y por consiguiente más rápido y tener el control total de todas las variables involucradas en el desarrollo.'
           )
         
       
