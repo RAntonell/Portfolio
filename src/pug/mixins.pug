@@ -18,16 +18,16 @@ mixin nav(page)
   nav.nav
     ul.nav__list
       if page == 'home'
-        li.nav__item: a(href="#").nav__link Home
-        li.nav__item: a(href="#projects").nav__link.scroll-on-page-link Projects
+        li.nav__item: a(href="#").nav__link Inicio
+        li.nav__item: a(href="#projects").nav__link.scroll-on-page-link Proyectos
       else
-        li.nav__item: a(href="index.html").nav__link Home
-        li.nav__item: a(href="index.html#projects").nav__link Projects
+        li.nav__item: a(href="index.html").nav__link Inicio
+        li.nav__item: a(href="index.html#projects").nav__link Proyectos
       if page == 'my-story'
-        li.nav__item: a(href="#").nav__link My story
+        li.nav__item: a(href="#").nav__link Mi historia
       else
-        li.nav__item: a(href="my-story.html").nav__link My story
-      li.nav__item: a(href="#contact").btn.scroll-on-page-link get in touch
+        li.nav__item: a(href="my-story.html").nav__link Mi historia
+      li.nav__item: a(href="#contact").btn.scroll-on-page-link Contacto
       
 //- insert svg icons into html
 mixin svg(name)
@@ -56,32 +56,32 @@ mixin project-details(title, challenge, solution, date, src_desktop, alt_desktop
     if development
       .title-and-btn-box
         .jumbo= title
-        a(href=''+ development+'', target="_blank").btn.visit-the-site visit the site
+        a(href=''+ development+'', target="_blank").btn.visit-the-site visitar la web
     else
       .title-and-btn-box
         .jumbo= title
-        a(href="img/" + src_desktop +"", target="_blank").btn View the design
+        a(href="img/" + src_desktop +"", target="_blank").btn Ver el diseño
 
     .info-box
       .info-box__challenge
-        h4.h4 Challenge
+        h4.h4 Reto
         p.p= challenge
         
       .info-box__solution
-        h4.h4 Solution
+        h4.h4 Solución
         p.p= solution
       
       .info-box__role-and-date
         .info-box__role
-          .label--bold Role:
+          .label--bold Rol:
           if development
             .info-box__role-result
-              .label Web interface designer
-              .label Web interface developer
+              .label Diseñador web
+              .label Desarrollador web
           else
-            .label Web interface designer
+            .label Diseñador web
         .info-box__date
-          .label--bold Date:
+          .label--bold Fecha:
           .label= date
 
     .devices      
@@ -91,7 +91,7 @@ mixin project-details(title, challenge, solution, date, src_desktop, alt_desktop
           img(src="img/"+ src_desktop +"", alt="" + alt_desktop + "").devices__laptop-website
         .devices__scrollable.js-scrollable-laptop
           img(src="img/scrollable-icon.png", alt="").devices__scrollable-icon
-          .p--white Scrolllable
+          .p--white Haz scroll
       if development
         .devices__phone
           img(src="img/phone-2.png", alt="").devices__phone-img
@@ -99,4 +99,4 @@ mixin project-details(title, challenge, solution, date, src_desktop, alt_desktop
             img(src="img/"+ src_mobile +"", alt="" + alt_mobile + "").devices__phone-website
           .devices__scrollable.js-scrollable-phone
             img(src="img/scrollable-icon.png", alt="").devices__scrollable-icon
-            .p--white Scrolllable
+            .p--white Haz scroll
