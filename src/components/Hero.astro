@@ -1,0 +1,66 @@
+---
+import { profile } from '../data/resume';
+---
+
+<header class="hero row">
+  <div>
+    <h1 class="hero-name">{profile.name}</h1>
+    <p class="hero-role">{profile.role}</p>
+    <p class="hero-summary">{profile.summary}</p>
+  </div>
+  <address class="hero-contact">
+    <ul>
+      <li>{profile.location} · {profile.workMode}</li>
+      <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+      {
+        profile.links.map(({ label, href }) => (
+          <li>
+            <a href={href} rel="me">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </address>
+</header>
+
+<style>
+  .hero-name {
+    font-size: var(--text-2xl);
+    line-height: 1.12;
+  }
+
+  .hero-role {
+    margin-top: var(--space-2);
+    font-size: var(--text-lg);
+    line-height: 1.22;
+    font-weight: 500;
+  }
+
+  .hero-summary {
+    margin-top: var(--space-4);
+    max-width: 26rem;
+    color: var(--muted);
+  }
+
+  .hero-contact {
+    font-style: normal;
+    color: var(--muted);
+  }
+
+  .hero-contact ul {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .hero-contact a {
+    text-underline-offset: 4px;
+    overflow-wrap: anywhere;
+    transition: color 0.15s ease;
+  }
+
+  .hero-contact a:hover {
+    color: var(--fg);
+  }
+</style>

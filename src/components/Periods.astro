@@ -1,0 +1,21 @@
+---
+import type { Period } from '../data/resume';
+import { formatMonth } from '../lib/dates';
+
+interface Props {
+  periods: Period[];
+}
+
+const { periods } = Astro.props;
+---
+
+{
+  periods.map(({ start, end }, index) => (
+    <>
+      {index > 0 && ', '}
+      <time datetime={start}>{formatMonth(start)}</time>
+      {' – '}
+      {end ? <time datetime={end}>{formatMonth(end)}</time> : 'Present'}
+    </>
+  ))
+}

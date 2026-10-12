@@ -1,0 +1,30 @@
+---
+import type { SkillGroup } from '../data/resume';
+
+interface Props {
+  group: SkillGroup;
+}
+
+const { title, items } = Astro.props.group;
+---
+
+<div>
+  <h3 class="skill-title">{title}</h3>
+  <ul class="skill-list">
+    {items.map((item) => <li>{item}</li>)}
+  </ul>
+</div>
+
+<style>
+  .skill-title {
+    font-size: var(--text-base);
+    line-height: 1.375;
+  }
+
+  .skill-list {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    color: var(--muted);
+  }
+</style>
