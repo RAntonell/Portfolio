@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="item">
+  <h3>{title}</h3>
+  {
+    Astro.slots.has('meta') && (
+      <p class="muted">
+        <slot name="meta" />
+      </p>
+    )
+  }
+  {
+    Astro.slots.has('default') && (
+      <p class="body">
+        <slot />
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .item + .item {
+    margin-top: var(--gap-block);
+  }
+
+  .body {
+    margin-top: var(--gap-tight);
+  }
+</style>

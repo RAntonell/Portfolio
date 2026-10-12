@@ -1,75 +1,49 @@
 ---
-import Entry from '../components/Entry.astro';
 import Hero from '../components/Hero.astro';
-import SkillGroup from '../components/SkillGroup.astro';
-import { education, experience, skills } from '../data/resume';
+import Item from '../components/Item.astro';
+import Periods from '../components/Periods.astro';
+import Section from '../components/Section.astro';
+import { education, experience, profile, skills } from '../data/resume';
 import Base from '../layouts/Base.astro';
 ---
 
 <Base>
-  <main class="resume">
-    <div class="reveal">
+  <div class="page">
+    <main>
       <Hero />
-    </div>
 
-    <hr class="reveal" style="--reveal-order: 1" />
+      <Section id="experience" title="Experience">
+        {
+          experience.map(({ company, title, periods, description }) => (
+            <Item title={`${company}, ${title}`}>
+              <Periods slot="meta" periods={periods} />
+              {description}
+            </Item>
+          ))
+        }
+      </Section>
 
-    <div class="row reveal" style="--reveal-order: 2">
-      <section aria-labelledby="education">
-        <h2 id="education">Education</h2>
-        {education.map((entry) => <Entry entry={entry} />)}
-      </section>
-      <section aria-labelledby="experience">
-        <h2 id="experience">Experience</h2>
-        {experience.map((entry) => <Entry entry={entry} />)}
-      </section>
-    </div>
+      <Section id="skills" title="Skills">
+        {skills.map(({ title, items }) => <Item title={title}>{items.join(', ')}</Item>)}
+      </Section>
 
-    <hr class="reveal" style="--reveal-order: 2" />
+      <Section id="education" title="Education">
+        <Item title={education.title}>
+          <Fragment slot="meta">
+            {education.place}, <Periods periods={education.periods} />
+          </Fragment>
+        </Item>
+      </Section>
+    </main>
 
-    <section class="row reveal" style="--reveal-order: 3" aria-labelledby="skills">
-      <h2 id="skills">Skills</h2>
-      <div class="skills">
-        {skills.map((group) => <SkillGroup group={group} />)}
-      </div>
-    </section>
-  </main>
+    <footer class="muted screen-only">
+      <a href={profile.source}>Source on GitHub</a>
+    </footer>
+  </div>
 </Base>
 
 <style>
-  .resume {
-    max-width: 67.5rem;
-    margin-inline: auto;
-    padding: clamp(1.5rem, 6vw, 4rem);
-    border: 1px solid var(--line);
-    box-shadow: 0 30px 60px rgb(0 0 0 / 0.55);
-  }
-
-  hr {
-    height: 1px;
-    margin: var(--space-8) 0;
-    border: 0;
-    background: var(--line);
-  }
-
-  h2 {
-    margin-bottom: var(--space-4);
-    font-size: var(--text-xl);
-    line-height: 1.18;
-  }
-
-  .skills {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
-    gap: var(--space-6) var(--space-4);
-  }
-
-  @media print {
-    .resume {
-      max-width: none;
-      padding: 0;
-      border: 0;
-      box-shadow: none;
-    }
+  footer {
+    margin-top: var(--gap-section);
   }
 </style>

@@ -1,6 +1,5 @@
 ---
-import type { Period } from '../data/resume';
-import { formatMonth } from '../lib/dates';
+import { type Period, formatMonth } from '../lib/dates';
 
 interface Props {
   periods: Period[];
@@ -12,9 +11,10 @@ const { periods } = Astro.props;
 {
   periods.map(({ start, end }, index) => (
     <>
-      {index > 0 && ', '}
+      {index > 0 && ' and '}
       <time datetime={start}>{formatMonth(start)}</time>
-      {' – '}
+      <span aria-hidden="true"> – </span>
+      <span class="visually-hidden"> to </span>
       {end ? <time datetime={end}>{formatMonth(end)}</time> : 'Present'}
     </>
   ))

@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/inter';
+import { Font } from 'astro:assets';
 import '../styles/global.css';
 import { profile } from '../data/resume';
 
@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title = `${profile.name} | ${profile.role}`,
-  description = profile.summary,
+  description = profile.metaDescription,
   noindex = false,
 } = Astro.props;
 
@@ -23,7 +23,7 @@ const person = {
   '@type': 'Person',
   name: profile.name,
   jobTitle: profile.role,
-  description: profile.summary,
+  description: profile.metaDescription,
   url: Astro.site,
   sameAs: profile.links.map(({ href }) => href),
 };
@@ -36,10 +36,13 @@ const person = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <Font cssVariable="--font-geist" preload />
 
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content={profile.name} />
@@ -56,32 +59,5 @@ const person = {
   </head>
   <body>
     <slot />
-    <script>
-      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-      if (finePointer.matches && !reducedMotion.matches) {
-        const { body } = document;
-        let frame = 0;
-
-        window.addEventListener(
-          'pointermove',
-          ({ clientX, clientY }) => {
-            if (frame) return;
-            frame = requestAnimationFrame(() => {
-              body.style.setProperty('--shine-x', `${clientX}px`);
-              body.style.setProperty('--shine-y', `${clientY}px`);
-              body.classList.add('has-pointer');
-              frame = 0;
-            });
-          },
-          { passive: true },
-        );
-
-        document.documentElement.addEventListener('pointerleave', () => {
-          body.classList.remove('has-pointer');
-        });
-      }
-    </script>
   </body>
 </html>

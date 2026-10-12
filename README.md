@@ -2,11 +2,11 @@
 
 Source for [rogerantonell.com](https://www.rogerantonell.com), my personal site.
 
-Built with [Astro](https://astro.build). The page is rendered to static HTML at build time and ships a few lines of JavaScript for the pointer highlight.
+Built with [Astro](https://astro.build). The page is rendered to static HTML at build time. It ships no JavaScript and one self-hosted font file, and follows the system light or dark theme.
 
 ## Development
 
-Requires Node.js 22 or newer.
+Requires Node.js 22.12 or newer.
 
 ```bash
 npm install
@@ -16,7 +16,7 @@ npm run dev
 | Command           | Action                                   |
 | ----------------- | ---------------------------------------- |
 | `npm run dev`     | Start the dev server at `localhost:4321` |
-| `npm run build`   | Build the site to `dist/`                |
+| `npm run build`   | Type-check, then build the site to `dist/` |
 | `npm run preview` | Serve the production build locally       |
 | `npm run check`   | Type-check Astro and TypeScript files    |
 
@@ -27,7 +27,7 @@ public/            Static files copied as-is (favicon, social image, CNAME)
 src/
   components/      Page sections and reusable pieces
   data/resume.ts   All page content, typed
-  layouts/         HTML shell, metadata, pointer highlight script
+  layouts/         HTML shell and metadata
   lib/             Small helpers
   pages/           Routes
   styles/          Design tokens and base styles
