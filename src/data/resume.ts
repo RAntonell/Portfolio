@@ -41,7 +41,7 @@ export const profile = {
   headline: 'Frontend developer who designs.',
   intro: [
     `For ${yearsAcross(experience.flatMap((role) => role.periods))} years I’ve taken features from first sketch to production code. At Sunweb Group I work on the design system and the customer account area, and I’ve designed several of the pages and features I shipped.`,
-    'Earlier, at Algrano, my redesign of key pages led to six times more user messages.',
+    'Earlier, at Algrano, my redesign of key pages led to six times more messages between users.',
   ],
   metaDescription:
     'Frontend developer who designs. Design systems, React, Next.js and TypeScript. Based in Girona, Spain, working remotely.',
