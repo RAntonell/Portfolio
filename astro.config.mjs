@@ -1,7 +1,9 @@
+import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
 export default defineConfig({
   site: 'https://www.rogerantonell.com',
+  integrations: [sitemap()],
   fonts: [
     {
       provider: fontProviders.fontsource(),

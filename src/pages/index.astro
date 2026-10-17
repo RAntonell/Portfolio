@@ -5,12 +5,31 @@ import Periods from '../components/Periods.astro';
 import Section from '../components/Section.astro';
 import { education, experience, profile, skills } from '../data/resume';
 import Base from '../layouts/Base.astro';
+import { getWork } from '../lib/work';
+
+const work = await getWork();
 ---
 
 <Base>
   <div class="page">
     <main>
       <Hero />
+
+      {
+        work.length > 0 && (
+          <Section id="work" title="Work">
+            {work.map(({ id, data }) => (
+              <Item title={data.title} href={`/work/${id}/`}>
+                <Fragment slot="meta">
+                  {data.company}, {data.period}
+                  {data.draft && ' (draft)'}
+                </Fragment>
+                {data.description}
+              </Item>
+            ))}
+          </Section>
+        )
+      }
 
       <Section id="experience" title="Experience">
         {

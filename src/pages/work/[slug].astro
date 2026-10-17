@@ -1,0 +1,103 @@
+---
+import { render } from 'astro:content';
+import { profile } from '../../data/resume';
+import Base from '../../layouts/Base.astro';
+import { getWork } from '../../lib/work';
+
+export async function getStaticPaths() {
+  const entries = await getWork();
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { title, description, company, role, period, draft } = entry.data;
+const { Content } = await render(entry);
+---
+
+<Base title={`${title} | ${profile.name}`} description={description} type="article">
+  <div class="page">
+    <nav class="screen-only">
+      <a href="/"><strong>{profile.name}</strong></a>
+    </nav>
+
+    <main>
+      <header>
+        <h1>{title}</h1>
+        <p class="muted">
+          {company}, {role}, {period}
+          {draft && ' (draft)'}
+        </p>
+      </header>
+
+      <article class="prose">
+        <Content />
+      </article>
+    </main>
+  </div>
+</Base>
+
+<style>
+  nav {
+    margin-bottom: var(--gap-text);
+  }
+
+  nav a {
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  header p {
+    margin-top: var(--gap-tight);
+  }
+
+  .prose {
+    --figure-width: 52rem;
+
+    margin-top: var(--gap-block);
+  }
+
+  .prose > :global(* + *) {
+    margin-top: var(--gap-text);
+  }
+
+  .prose > :global(h2) {
+    margin-top: var(--gap-section);
+    color: var(--muted);
+    font-weight: var(--weight-regular);
+  }
+
+  .prose > :global(h3) {
+    margin-top: var(--gap-block);
+  }
+
+  .prose > :global(:is(h2, h3) + *) {
+    margin-top: var(--gap-tight);
+  }
+
+  .prose :global(ul) {
+    display: grid;
+    gap: var(--gap-tight);
+  }
+
+  .prose :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    outline: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+    outline-offset: -1px;
+  }
+
+  .prose > :global(p:has(> img)) {
+    margin-top: var(--gap-block);
+  }
+
+  @media screen and (min-width: 64rem) {
+    .prose > :global(p:has(> img)) {
+      margin-inline: calc((var(--measure) - var(--figure-width)) / 2);
+    }
+  }
+</style>

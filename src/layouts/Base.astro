@@ -6,12 +6,14 @@ import { profile } from '../data/resume';
 interface Props {
   title?: string;
   description?: string;
+  type?: 'profile' | 'article';
   noindex?: boolean;
 }
 
 const {
   title = `${profile.name} | ${profile.role}`,
   description = profile.metaDescription,
+  type = 'profile',
   noindex = false,
 } = Astro.props;
 
@@ -44,7 +46,7 @@ const person = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <Font cssVariable="--font-geist" preload />
 
-    <meta property="og:type" content="profile" />
+    <meta property="og:type" content={type} />
     <meta property="og:site_name" content={profile.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
