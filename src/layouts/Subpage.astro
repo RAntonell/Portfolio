@@ -1,0 +1,29 @@
+---
+import type { ComponentProps } from 'astro/types';
+import { profile } from '../data/resume';
+import Base from './Base.astro';
+
+type Props = ComponentProps<typeof Base>;
+---
+
+<Base {...Astro.props}>
+  <div class="page">
+    <nav class="screen-only">
+      <a href="/"><strong>{profile.name}</strong></a>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+  </div>
+</Base>
+
+<style>
+  nav {
+    margin-bottom: var(--gap-text);
+  }
+
+  nav a {
+    text-decoration: none;
+  }
+</style>

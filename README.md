@@ -39,7 +39,7 @@ To update the résumé, edit `src/data/resume.ts`.
 
 ## Case studies
 
-Each `.md` or `.mdx` file in `src/content/work/` becomes a page at `/work/<file name>/` and an entry in the Work section of the home page. The frontmatter takes `title`, `description`, `company`, `role`, `period`, `glance` (the label and value pairs shown under the title), `order` and `draft`.
+Each `.md` or `.mdx` file in `src/content/work/` becomes a page at `/work/<file name>/` and an entry in the Work section of the home page and in the `/work/` index, which is only built when at least one case study is published. The frontmatter takes `title`, `description`, `company`, `role`, `period`, `glance` (the label and value pairs shown under the title), `order` and `draft`.
 
 Entries with `draft: true` show up in `npm run dev` only. Production builds leave out their pages, their home page entries and their images. To publish one, set `draft: false`.
 

@@ -1,14 +1,16 @@
 ---
 interface Props {
   title: string;
+  level?: 2 | 3;
   link?: { href: string; label: string };
 }
 
-const { title, link } = Astro.props;
+const { title, level = 3, link } = Astro.props;
+const Heading = `h${level}` as const;
 ---
 
 <div class="item">
-  <h3>{title}</h3>
+  <Heading>{title}</Heading>
   {
     Astro.slots.has('meta') && (
       <p class="muted">

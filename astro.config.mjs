@@ -5,6 +5,9 @@ import { defineConfig, fontProviders } from 'astro/config';
 export default defineConfig({
   site: 'https://www.rogerantonell.com',
   integrations: [mdx(), sitemap()],
+  image: {
+    layout: 'constrained',
+  },
   fonts: [
     {
       provider: fontProviders.fontsource(),

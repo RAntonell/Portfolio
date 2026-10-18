@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import CaseStudy from '../../components/CaseStudy.astro';
+import WorkList from '../../components/WorkList.astro';
+import { profile } from '../../data/resume';
+import Subpage from '../../layouts/Subpage.astro';
+import { getWork } from '../../lib/work';
+
+type Props = { entries: CollectionEntry<'work'>[] } | { entry: CollectionEntry<'work'> };
+
+export async function getStaticPaths() {
+  const entries = await getWork();
+  if (entries.length === 0) return [];
+
+  return [
+    { params: { slug: undefined }, props: { entries } },
+    ...entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } })),
+  ];
+}
+
+const props = Astro.props;
+---
+
+{
+  'entry' in props ? (
+    <Subpage title={`${props.entry.data.title} | ${profile.name}`} description={props.entry.data.description} type="article">
+      <CaseStudy entry={props.entry} />
+    </Subpage>
+  ) : (
+    <Subpage title={`Work | ${profile.name}`} description={`Case studies by ${profile.name}, a frontend developer who designs.`} type="website">
+      <h1>Work</h1>
+      <div class="list">
+        <WorkList entries={props.entries} level={2} />
+      </div>
+    </Subpage>
+  )
+}
+
+<style>
+  .list {
+    margin-top: var(--gap-block);
+  }
+</style>

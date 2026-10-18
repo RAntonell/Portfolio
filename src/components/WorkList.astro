@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Item from './Item.astro';
+
+interface Props {
+  entries: CollectionEntry<'work'>[];
+  level?: 2 | 3;
+}
+
+const { entries, level } = Astro.props;
+---
+
+{
+  entries.map(({ id, data }) => (
+    <Item title={data.title} level={level} link={{ href: `/work/${id}/`, label: 'Read the case study' }}>
+      <Fragment slot="meta">
+        {data.company}, {data.period}
+        {data.draft && ' (draft)'}
+      </Fragment>
+      {data.description}
+    </Item>
+  ))
+}

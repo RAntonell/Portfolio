@@ -1,65 +1,39 @@
 ---
-import { render } from 'astro:content';
-import { profile } from '../../data/resume';
-import Base from '../../layouts/Base.astro';
-import { getWork } from '../../lib/work';
+import { type CollectionEntry, render } from 'astro:content';
 
-export async function getStaticPaths() {
-  const entries = await getWork();
-  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+interface Props {
+  entry: CollectionEntry<'work'>;
 }
 
 const { entry } = Astro.props;
-const { title, description, company, role, period, glance, draft } = entry.data;
+const { title, company, role, period, glance, draft } = entry.data;
 const { Content } = await render(entry);
 ---
 
-<Base title={`${title} | ${profile.name}`} description={description} type="article">
-  <div class="page">
-    <nav class="screen-only">
-      <a href="/"><strong>{profile.name}</strong></a>
-    </nav>
+<header>
+  <h1>{title}</h1>
+  <p class="muted">
+    {company}, {role}, {period}
+    {draft && ' (draft)'}
+  </p>
+</header>
 
-    <main>
-      <header>
-        <h1>{title}</h1>
-        <p class="muted">
-          {company}, {role}, {period}
-          {draft && ' (draft)'}
-        </p>
-      </header>
+<dl class="glance">
+  {
+    glance.map(({ label, value }) => (
+      <div>
+        <dt class="muted">{label}</dt>
+        <dd>{value}</dd>
+      </div>
+    ))
+  }
+</dl>
 
-      <dl class="glance">
-        {
-          glance.map(({ label, value }) => (
-            <div>
-              <dt class="muted">{label}</dt>
-              <dd>{value}</dd>
-            </div>
-          ))
-        }
-      </dl>
-
-      <article class="prose">
-        <Content />
-      </article>
-    </main>
-  </div>
-</Base>
+<article class="prose">
+  <Content />
+</article>
 
 <style>
-  nav {
-    margin-bottom: var(--gap-text);
-  }
-
-  nav a {
-    text-decoration: none;
-  }
-
-  nav a:hover {
-    text-decoration: underline;
-  }
-
   header p {
     margin-top: var(--gap-tight);
   }
