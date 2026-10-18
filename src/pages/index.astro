@@ -19,7 +19,7 @@ const work = await getWork();
         work.length > 0 && (
           <Section id="work" title="Work">
             {work.map(({ id, data }) => (
-              <Item title={data.title} href={`/work/${id}/`}>
+              <Item title={data.title} link={{ href: `/work/${id}/`, label: 'Read the case study' }}>
                 <Fragment slot="meta">
                   {data.company}, {data.period}
                   {data.draft && ' (draft)'}

@@ -27,7 +27,7 @@ public/            Static files copied as-is (favicon, social image, CNAME)
 src/
   assets/work/     Case study images, optimized at build time
   components/      Page sections and reusable pieces
-  content/work/    Case studies, one Markdown file each
+  content/work/    Case studies, one Markdown or MDX file each
   data/resume.ts   Résumé content, typed
   layouts/         HTML shell and metadata
   lib/             Small helpers
@@ -39,9 +39,11 @@ To update the résumé, edit `src/data/resume.ts`.
 
 ## Case studies
 
-Each file in `src/content/work/` becomes a page at `/work/<file name>/` and an entry in the Work section of the home page. The frontmatter takes `title`, `description`, `company`, `role`, `period`, `order` and `draft`.
+Each `.md` or `.mdx` file in `src/content/work/` becomes a page at `/work/<file name>/` and an entry in the Work section of the home page. The frontmatter takes `title`, `description`, `company`, `role`, `period`, `glance` (the label and value pairs shown under the title), `order` and `draft`.
 
 Entries with `draft: true` show up in `npm run dev` only. Production builds leave out their pages, their home page entries and their images. To publish one, set `draft: false`.
+
+MDX files can import the flow and timeline diagrams in `src/components/diagrams/`. They render to plain HTML and CSS, so the site still ships no JavaScript.
 
 ## Deployment
 

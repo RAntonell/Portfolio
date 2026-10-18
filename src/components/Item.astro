@@ -1,14 +1,14 @@
 ---
 interface Props {
   title: string;
-  href?: string;
+  link?: { href: string; label: string };
 }
 
-const { title, href } = Astro.props;
+const { title, link } = Astro.props;
 ---
 
 <div class="item">
-  <h3>{href ? <a href={href}>{title}</a> : title}</h3>
+  <h3>{title}</h3>
   {
     Astro.slots.has('meta') && (
       <p class="muted">
@@ -20,6 +20,16 @@ const { title, href } = Astro.props;
     Astro.slots.has('default') && (
       <p class="body">
         <slot />
+      </p>
+    )
+  }
+  {
+    link && (
+      <p class="body">
+        <a href={link.href}>
+          {link.label}
+          <span class="visually-hidden">: {title}</span>
+        </a>
       </p>
     )
   }

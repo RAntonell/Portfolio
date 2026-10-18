@@ -4,6 +4,7 @@
   --bg: light-dark(#fff, #0a0a0a);
   --fg: light-dark(#171717, #ededed);
   --muted: light-dark(#595959, #a1a1a1);
+  --line: color-mix(in srgb, var(--muted) 40%, transparent);
 
   --font: var(--font-geist);
   --text-base: 1rem;
@@ -20,6 +21,8 @@
   --gap-block: 2rem;
   --gap-section: 4rem;
   --gap-page: 4rem;
+
+  --radius: 0.5rem;
 
   --measure: 35rem;
 }
@@ -43,11 +46,16 @@ h1,
 h2,
 h3,
 p,
-ul {
+ul,
+ol,
+figure,
+dl,
+dd {
   margin: 0;
 }
 
-ul {
+ul,
+ol {
   padding: 0;
   list-style: none;
 }

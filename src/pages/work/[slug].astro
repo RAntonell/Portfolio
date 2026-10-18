@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { title, description, company, role, period, draft } = entry.data;
+const { title, description, company, role, period, glance, draft } = entry.data;
 const { Content } = await render(entry);
 ---
 
@@ -28,6 +28,17 @@ const { Content } = await render(entry);
           {draft && ' (draft)'}
         </p>
       </header>
+
+      <dl class="glance">
+        {
+          glance.map(({ label, value }) => (
+            <div>
+              <dt class="muted">{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))
+        }
+      </dl>
 
       <article class="prose">
         <Content />
@@ -53,10 +64,24 @@ const { Content } = await render(entry);
     margin-top: var(--gap-tight);
   }
 
+  .glance {
+    display: grid;
+    gap: var(--gap-text);
+    margin-top: var(--gap-block);
+  }
+
+  @media (min-width: 40rem) {
+    .glance > div {
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      gap: var(--gap-text);
+    }
+  }
+
   .prose {
     --figure-width: 52rem;
 
-    margin-top: var(--gap-block);
+    margin-top: var(--gap-section);
   }
 
   .prose > :global(* + *) {
@@ -73,25 +98,30 @@ const { Content } = await render(entry);
     margin-top: var(--gap-block);
   }
 
-  .prose > :global(:is(h2, h3) + *) {
+  .prose > :global(h2 + *) {
+    margin-top: var(--gap-text);
+  }
+
+  .prose > :global(h3 + *) {
     margin-top: var(--gap-tight);
   }
 
-  .prose :global(ul) {
+  .prose > :global(ul) {
     display: grid;
     gap: var(--gap-tight);
   }
 
-  .prose :global(img) {
+  .prose > :global(p > img) {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 0.5rem;
-    outline: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+    border-radius: var(--radius);
+    outline: 1px solid var(--line);
     outline-offset: -1px;
   }
 
-  .prose > :global(p:has(> img)) {
+  .prose > :global(:not(h2, h3) + :is(figure, p:has(> img))),
+  .prose > :global(:is(figure, p:has(> img)) + :not(h2)) {
     margin-top: var(--gap-block);
   }
 

@@ -1,0 +1,122 @@
+---
+import { type YearMonth, type YearMonthDay, formatDay } from '../../lib/dates';
+
+interface Row {
+  label: string;
+  note: string;
+  start: YearMonthDay;
+  end?: YearMonthDay;
+}
+
+interface Props {
+  from: YearMonth;
+  to: YearMonth;
+  rows: Row[];
+  caption: string;
+}
+
+const { from, to, rows, caption } = Astro.props;
+
+const timeOf = (date: YearMonthDay) => Date.parse(`${date}T00:00:00Z`);
+const addMonths = (time: number, months: number) => {
+  const date = new Date(time);
+  date.setUTCMonth(date.getUTCMonth() + months);
+  return date.getTime();
+};
+
+const rangeStart = Date.parse(`${from}-01T00:00:00Z`);
+const rangeEnd = addMonths(Date.parse(`${to}-01T00:00:00Z`), 1);
+const percentOf = (time: number) => `${((time - rangeStart) / (rangeEnd - rangeStart)) * 100}%`;
+
+const monthLabel = new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' });
+const ticks: { label: string; position: string }[] = [];
+for (let time = rangeStart; addMonths(time, 3) <= rangeEnd; time = addMonths(time, 3)) {
+  ticks.push({ label: monthLabel.format(time), position: percentOf(time) });
+}
+---
+
+<figure>
+  <ol>
+    {
+      rows.map(({ label, note, start, end }) => (
+        <li>
+          <p>
+            <strong>{label}</strong>
+          </p>
+          <p class="muted">
+            <time datetime={start}>{formatDay(start)}</time>
+            {end && (
+              <>
+                <span aria-hidden="true"> – </span>
+                <span class="visually-hidden"> to </span>
+                <time datetime={end}>{formatDay(end)}</time>
+              </>
+            )}
+            {`, ${note}`}
+          </p>
+          <div class="track" aria-hidden="true">
+            <span
+              class="bar"
+              style={{ '--start': percentOf(timeOf(start)), '--end': percentOf(timeOf(end ?? start)) }}
+            />
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+  <div class="axis muted" aria-hidden="true">
+    {ticks.map(({ label, position }) => <span style={{ '--position': position }}>{label}</span>)}
+  </div>
+  <figcaption class="muted">{caption}</figcaption>
+</figure>
+
+<style>
+  figure {
+    --size: 0.5rem;
+  }
+
+  li + li {
+    margin-top: var(--gap-text);
+  }
+
+  .track {
+    position: relative;
+    height: var(--size);
+    margin-top: var(--gap-tight);
+  }
+
+  .track::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: calc(50% - 0.5px);
+    border-top: 1px solid var(--line);
+  }
+
+  .bar {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(var(--start) - var(--size) / 2);
+    width: calc(var(--end) - var(--start) + var(--size));
+    border-radius: var(--size);
+    background: var(--fg);
+    print-color-adjust: exact;
+  }
+
+  .axis {
+    position: relative;
+    height: var(--leading-base);
+    margin-top: var(--gap-tight);
+  }
+
+  .axis span {
+    position: absolute;
+    inset-inline-start: var(--position);
+    padding-inline-start: var(--gap-tight);
+    border-inline-start: 1px solid var(--line);
+  }
+
+  figcaption {
+    margin-top: var(--gap-text);
+  }
+</style>

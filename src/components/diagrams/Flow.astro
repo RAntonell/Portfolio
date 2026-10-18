@@ -1,0 +1,91 @@
+---
+interface Column {
+  title: string;
+  steps: string[];
+  outcomes?: string[];
+}
+
+interface Props {
+  columns: Column[];
+  caption: string;
+}
+
+const { columns, caption } = Astro.props;
+---
+
+<figure>
+  <div class="columns">
+    {
+      columns.map(({ title, steps, outcomes }) => (
+        <div>
+          <p class="muted">{title}</p>
+          <ol>
+            {steps.map((step) => (
+              <li>{step}</li>
+            ))}
+          </ol>
+          {outcomes && (
+            <ul class="muted" aria-label="Outcomes">
+              {outcomes.map((outcome) => (
+                <li>{outcome}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))
+    }
+  </div>
+  <figcaption class="muted">{caption}</figcaption>
+</figure>
+
+<style>
+  .columns {
+    --dot: 0.5rem;
+    --dot-gap: 0.25rem;
+    --indent: 1.25rem;
+    --dot-top: calc((var(--leading-base) - var(--dot)) / 2);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--gap-block);
+  }
+
+  ol,
+  ul {
+    margin-top: var(--gap-tight);
+    padding-inline-start: var(--indent);
+  }
+
+  ol li {
+    position: relative;
+  }
+
+  ol li + li {
+    margin-top: var(--gap-text);
+  }
+
+  ol li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: calc(-1 * var(--indent));
+    top: var(--dot-top);
+    width: var(--dot);
+    height: var(--dot);
+    border-radius: 50%;
+    background: var(--fg);
+    print-color-adjust: exact;
+  }
+
+  ol li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    inset-inline-start: calc(-1 * var(--indent) + var(--dot) / 2 - 0.5px);
+    top: calc(var(--dot-top) + var(--dot) + var(--dot-gap));
+    bottom: calc(-1 * (var(--gap-text) + var(--dot-top) - var(--dot-gap)));
+    border-inline-start: 1px solid var(--line);
+  }
+
+  figcaption {
+    margin-top: var(--gap-text);
+  }
+</style>

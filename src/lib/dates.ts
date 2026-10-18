@@ -1,4 +1,5 @@
 export type YearMonth = `${number}-${number}`;
+export type YearMonthDay = `${number}-${number}-${number}`;
 
 export interface Period {
   start: YearMonth;
@@ -13,6 +14,15 @@ const monthFormat = new Intl.DateTimeFormat('en', {
 
 export const formatMonth = (value: YearMonth): string =>
   monthFormat.format(new Date(`${value}-01T00:00:00Z`));
+
+const dayFormat = new Intl.DateTimeFormat('en', {
+  month: 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+
+export const formatDay = (value: YearMonthDay): string =>
+  dayFormat.format(new Date(`${value}T00:00:00Z`));
 
 const monthIndex = (value: YearMonth): number => {
   const [year = 0, month = 0] = value.split('-').map(Number);

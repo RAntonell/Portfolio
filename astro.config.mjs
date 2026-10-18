@@ -1,9 +1,10 @@
+import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
 export default defineConfig({
   site: 'https://www.rogerantonell.com',
-  integrations: [sitemap()],
+  integrations: [mdx(), sitemap()],
   fonts: [
     {
       provider: fontProviders.fontsource(),
