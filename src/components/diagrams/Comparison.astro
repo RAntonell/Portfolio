@@ -1,0 +1,74 @@
+---
+interface Row {
+  label: string;
+  before: string;
+  after?: string;
+}
+
+interface Props {
+  before: string;
+  after: string;
+  rows: Row[];
+  caption: string;
+  removed?: string;
+}
+
+const { before, after, rows, caption, removed = 'Not needed' } = Astro.props;
+---
+
+<figure>
+  <div role="table" aria-label={caption}>
+    <div role="row" class="row head muted">
+      <span role="columnheader" class="label"><span class="visually-hidden">Step</span></span>
+      <span role="columnheader">{before}</span>
+      <span role="columnheader">{after}</span>
+    </div>
+    {
+      rows.map((row) => (
+        <div role="row" class="row">
+          <span role="rowheader" class="label muted">
+            {row.label}
+          </span>
+          <span role="cell">{row.before}</span>
+          <span role="cell" class:list={{ muted: !row.after }}>
+            {row.after ?? removed}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+  <figcaption class="muted">{caption}</figcaption>
+</figure>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 var(--gap-text);
+    padding-block: var(--gap-text);
+    border-top: 1px solid var(--line);
+  }
+
+  .head {
+    padding-block-start: 0;
+    border-top: 0;
+  }
+
+  .label {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 40rem) {
+    .row {
+      grid-template-columns: 9rem 1fr 1fr;
+    }
+
+    .label {
+      grid-column: auto;
+    }
+  }
+
+  figcaption {
+    margin-top: var(--gap-text);
+  }
+</style>
