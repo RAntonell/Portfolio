@@ -54,6 +54,10 @@ const { before, after, rows, caption, removed = 'Not needed' } = Astro.props;
     border-top: 0;
   }
 
+  .row > * {
+    text-wrap: balance;
+  }
+
   .label {
     grid-column: 1 / -1;
   }
