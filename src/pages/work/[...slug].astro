@@ -23,7 +23,12 @@ const props = Astro.props;
 
 {
   'entry' in props ? (
-    <Subpage title={`${props.entry.data.title} | ${profile.name}`} description={props.entry.data.description} type="article">
+    <Subpage
+      title={`${props.entry.data.title} | ${profile.name}`}
+      description={props.entry.data.description}
+      type="article"
+      image={{ path: `/og/work/${props.entry.id}.png`, alt: props.entry.data.title }}
+    >
       <CaseStudy entry={props.entry} />
     </Subpage>
   ) : (

@@ -36,7 +36,9 @@ const work = await getWork();
       </Section>
 
       <Section id="skills" title="Skills">
-        {skills.map(({ title, items }) => <Item title={title}>{items.join(', ')}</Item>)}
+        <div class="skills">
+          {skills.map(({ title, items }) => <Item title={title}>{items.join(', ')}</Item>)}
+        </div>
       </Section>
 
       <Section id="education" title="Education">
@@ -57,5 +59,24 @@ const work = await getWork();
 <style>
   footer {
     margin-top: var(--gap-section);
+  }
+
+  @media print {
+    .skills :global(.item) {
+      display: flex;
+      gap: 0.5ch;
+    }
+
+    .skills :global(.item + .item) {
+      margin-top: var(--gap-tight);
+    }
+
+    .skills :global(h3::after) {
+      content: ':';
+    }
+
+    .skills :global(.body) {
+      margin-top: 0;
+    }
   }
 </style>

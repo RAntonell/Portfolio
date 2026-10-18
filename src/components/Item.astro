@@ -7,6 +7,7 @@ interface Props {
 
 const { title, level = 3, link } = Astro.props;
 const Heading = `h${level}` as const;
+const printUrl = link && new URL(link.href, Astro.site).href;
 ---
 
 <div class="item">
@@ -28,7 +29,7 @@ const Heading = `h${level}` as const;
   {
     link && (
       <p class="body">
-        <a href={link.href}>
+        <a href={link.href} data-print-url={printUrl}>
           {link.label}
           <span class="visually-hidden">: {title}</span>
         </a>
@@ -44,5 +45,15 @@ const Heading = `h${level}` as const;
 
   .body {
     margin-top: var(--gap-tight);
+  }
+
+  @media print {
+    .item {
+      break-inside: avoid;
+    }
+
+    a[data-print-url]::after {
+      content: ' (' attr(data-print-url) ')';
+    }
   }
 </style>

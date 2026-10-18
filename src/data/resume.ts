@@ -24,7 +24,7 @@ export const experience: Role[] = [
     title: 'Frontend Developer',
     periods: [{ start: '2019-06', end: '2020-08' }, { start: '2021-01' }],
     description:
-      'Build the customer account area and contribute to the multi-platform design system. Design and ship pages and features end to end, across many product teams. Currently migrating legacy frontends to React, Next.js and TypeScript.',
+      'Build the customer account area and contribute to the multi-platform design system. Design and ship pages and features end to end, across many product teams. Moved the account area from Sitecore MVC to Next.js across 10 sites, market by market.',
   },
   {
     company: 'Algrano',
@@ -40,7 +40,7 @@ export const profile = {
   role: 'Frontend Developer',
   headline: 'Frontend developer who designs.',
   intro: [
-    `For ${yearsAcross(experience.flatMap((role) => role.periods))} years I’ve taken features from first sketch to production code. At Sunweb Group I work on the design system and the customer account area, and I’ve designed several of the pages and features I shipped.`,
+    `For ${yearsAcross(experience.flatMap((role) => role.periods))} years I’ve taken features from first sketch to production code. At Sunweb Group I was the main frontend developer on moving the customer account area to Next.js across 10 travel sites, and I designed several of its pages, including booking details and sign in.`,
     'Earlier, at Algrano, my redesign of key pages led to six times more messages between users.',
   ],
   metaDescription:
@@ -56,22 +56,15 @@ export const profile = {
 export const skills: SkillGroup[] = [
   {
     title: 'Frontend',
-    items: [
-      'React',
-      'Next.js',
-      'TypeScript',
-      'JavaScript',
-      'HTML',
-      'CSS',
-      'Styled-components',
-      'CSS Modules',
-      'Jest',
-      'New Relic',
-    ],
+    items: ['React', 'Next.js', 'TypeScript', 'CSS', 'Jest'],
   },
   {
-    title: 'UI and systems',
-    items: ['Storybook', 'Component architecture', 'Accessibility', 'Design handoff', 'Figma'],
+    title: 'Design',
+    items: ['Figma', 'Design systems', 'Storybook', 'Accessibility'],
+  },
+  {
+    title: 'Delivery',
+    items: ['Feature flags', 'Canary releases', 'Performance monitoring'],
   },
   {
     title: 'Languages',
