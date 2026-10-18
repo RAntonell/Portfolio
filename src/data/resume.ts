@@ -63,10 +63,6 @@ export const skills: SkillGroup[] = [
     items: ['Figma', 'Design systems', 'Storybook', 'Accessibility'],
   },
   {
-    title: 'Delivery',
-    items: ['Feature flags', 'Canary releases', 'Performance monitoring'],
-  },
-  {
     title: 'Languages',
     items: ['English (professional)', 'Spanish (native)', 'Catalan (native)'],
   },
