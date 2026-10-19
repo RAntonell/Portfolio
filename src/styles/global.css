@@ -9,6 +9,8 @@
   --font: var(--font-geist);
   --text-base: 1rem;
   --leading-base: 1.5rem;
+  --text-small: 0.875rem;
+  --leading-small: 1.25rem;
   --text-display: 2rem;
   --leading-display: 2.5rem;
   --weight-regular: 400;
@@ -98,6 +100,12 @@ li,
 dd,
 figcaption {
   text-wrap: pretty;
+}
+
+figcaption {
+  max-width: var(--measure);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
 }
 
 time {

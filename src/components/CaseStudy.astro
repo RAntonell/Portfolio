@@ -85,23 +85,8 @@ const { Content } = await render(entry);
     gap: var(--gap-tight);
   }
 
-  .prose > :global(p > img) {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius);
-    outline: 1px solid var(--line);
-    outline-offset: -1px;
-  }
-
-  .prose > :global(:not(h2, h3) + :is(figure, p:has(> img))),
-  .prose > :global(:is(figure, p:has(> img)) + :not(h2)) {
+  .prose > :global(:not(h2, h3) + figure),
+  .prose > :global(figure + :not(h2)) {
     margin-top: var(--gap-block);
-  }
-
-  @media screen and (min-width: 64rem) {
-    .prose > :global(p:has(> img)) {
-      margin-inline: calc((var(--measure) - var(--figure-width)) / 2);
-    }
   }
 </style>

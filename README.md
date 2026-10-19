@@ -45,6 +45,8 @@ Entries with `draft: true` show up in `npm run dev` only. Production builds leav
 
 MDX files can import the flow and timeline diagrams in `src/components/diagrams/`. They render to plain HTML and CSS, so the site still ships no JavaScript.
 
+Screenshots go through `src/components/Screens.astro`: one or more images in a row with a caption under them. It sets responsive `sizes` for the layout, and `priority` loads the first one early when it sits at the top of the page.
+
 Each published case study also gets its own social preview image, drawn at build time by `src/lib/og.ts` with the Geist font files in `src/assets/fonts/` (SIL Open Font License, see `OFL.txt`).
 
 ## Deployment
