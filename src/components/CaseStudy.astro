@@ -80,9 +80,23 @@ const { Content } = await render(entry);
     margin-top: var(--gap-tight);
   }
 
-  .prose > :global(ul) {
+  .prose > :global(:is(ul, ol)) {
     display: grid;
     gap: var(--gap-tight);
+    padding-inline-start: 1.5rem;
+  }
+
+  .prose > :global(ul) {
+    list-style: disc;
+  }
+
+  .prose > :global(ol) {
+    list-style: decimal;
+  }
+
+  .prose > :global(:is(ul, ol) > li::marker) {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
   }
 
   .prose > :global(:not(h2, h3) + figure),
