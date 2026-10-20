@@ -1,0 +1,166 @@
+---
+title: Redesigning the auth flow
+description: Redesigned and rebuilt sign in, account creation, verification and password reset for Sunweb Group’s 10 sites, then released it through a 50/50 canary.
+company: Sunweb Group
+role: Frontend Developer
+period: "2026"
+glance:
+  - label: Role
+    value: Designed the flow, was one of its main developers, and ran the rollout to all 10 sites.
+  - label: Scope
+    value: Sign in, create account, verify account, reset and set password.
+  - label: Changed
+    value: Less around the form, fewer fields, and no dead ends after the email.
+  - label: Result
+    value: Accessibility issues from 30 to 0, releases on demand instead of weekly, and a canary that caught a real problem before it reached everyone.
+order: 2
+draft: true
+---
+import Screens from '../../components/Screens.astro';
+import Flow from '../../components/diagrams/Flow.astro';
+import beforeSignIn from '../../assets/work/sign-in/before-sign-in.webp';
+import afterSignIn from '../../assets/work/sign-in/after-sign-in.webp';
+import beforeCreateAccount from '../../assets/work/sign-in/before-create-account.webp';
+import mobileSignIn from '../../assets/work/sign-in/mobile-sign-in.webp';
+import mobileCreateAccount from '../../assets/work/sign-in/mobile-create-account.webp';
+import mobileCheckInbox from '../../assets/work/sign-in/mobile-check-inbox.webp';
+import afterResetPassword from '../../assets/work/sign-in/after-reset-password.webp';
+import afterCreateAccount from '../../assets/work/sign-in/after-create-account.webp';
+import errorSignIn from '../../assets/work/sign-in/error-sign-in.webp';
+
+<Screens
+  priority
+  caption="Before: the sign-in form sits over a large photo, under the full site menu, and every field says what it is twice."
+  screens={[{ src: beforeSignIn, alt: 'Old sign-in page: the full site menu, a large photo, and a small form where each field says what it is twice' }]}
+/>
+
+<Screens
+  caption="After: only the logo above the form, and one short label per field with nothing inside it."
+  screens={[{ src: afterSignIn, alt: 'New sign-in page: only the logo, the form on a calm background, short labels and a show-password toggle' }]}
+/>
+
+## The problem
+
+The old flow worked, but too much competed with the form for attention:
+
+- A large photo, the full site menu, and a footer full of links and logos.
+- Every field said what it was twice, above and inside.
+- Create account asked for the password twice.
+- It ran on Sitecore, so even a small change waited for the weekly release.
+
+## Design decisions
+
+### Only the form
+
+We cut everything around the form to the bare minimum. The header is down to the logo and the footer to five links. No photo, and one short line on why to sign in.
+
+<Screens
+  caption="After, on a phone: sign in, create account and check your inbox."
+  screens={[{ src: mobileSignIn, alt: 'Sign in on a phone' }, { src: mobileCreateAccount, alt: 'Create account on a phone' }, { src: mobileCheckInbox, alt: 'Check your inbox on a phone, with a way to use a different email' }]}
+/>
+
+### Short labels, nothing inside the field
+
+Labels went from “Enter your email address” to “Email address”, and there’s no grey text inside the field repeating it.
+
+<Screens
+  caption="After: reset password, with the way back to sign in under the button."
+  screens={[{ src: afterResetPassword, alt: 'New reset password form, with the way back under the button' }]}
+/>
+
+### Accounts that link to bookings
+
+A hint under the email field asks for the address used to book, because that address is what links the account to existing bookings.
+
+### One password field
+
+No confirm field. Typing the password twice adds friction and catches little: password managers and the browser fill it in for many people, and anyone typing it can check it with the show-password toggle. The rules tick off as you type.
+
+### Newsletters as a choice
+
+Before, ticking “Subscribe to the newsletter” opened two more boxes, sun and ski holidays, both already ticked. One tick meant two subscriptions, and under GDPR a pre-ticked box doesn’t count as consent.
+
+We removed the main checkbox. Sun holidays and winter sports are now two separate options, both optional and unticked, so each subscription is a choice someone makes.
+
+<Screens
+  caption="Before: create account asks for the password twice, and one tick signs people up for both newsletters."
+  screens={[{ src: beforeCreateAccount, alt: 'Old create account page, with the password asked twice and a newsletter checkbox that opens two more, already ticked' }]}
+/>
+
+<Screens
+  caption="After: one password field with live rules, and two newsletters that start unticked."
+  screens={[{ src: afterCreateAccount, alt: 'New create account form, with one password field, live password rules and two optional newsletters' }]}
+/>
+
+### Accessible by default
+
+The old sign-in page had 30 accessibility issues in an automated axe scan, 13 of them critical: zooming was blocked, some buttons and links had no name a screen reader could read, text contrast was too low, and touch targets were too small. The new page has none in the same scan.
+
+- Every screen is a real form, so pressing Enter submits it. Before, it didn’t.
+- Fields tell the browser what they are, so password managers and autofill work.
+- Loading and confirmation screens are announced to screen readers.
+
+### Secure without getting in the way
+
+Security had to stay invisible to people signing in, and get in the way of anyone abusing the forms.
+
+- Every form sends an anti-forgery token, so another site can’t submit it on someone’s behalf.
+- An invisible reCAPTCHA stops bots, with no puzzle for people to solve.
+- A wrong email and a wrong password get the same message, and reset password says the same thing either way, so the forms never reveal whether an email has an account.
+- After too many attempts, sign-in pauses and says how long to wait.
+- People only go back to addresses on the same site, so a crafted link can’t send them somewhere else.
+
+<Screens
+  caption="After: a wrong email or password gets one message, without saying which one was wrong."
+  screens={[{ src: errorSignIn, alt: 'Sign in with wrong details: one message for both fields, asking to check the email address and password' }]}
+/>
+
+### No dead ends after the email
+
+Create account and reset password both end with a link in an email. Before, opening it verified the account or saved the new password, and nothing confirmed it had worked. Now the link signs people in and takes them to their bookings, with a message saying what just happened.
+
+When the link can’t do that, the page says why and what to do next: the account is already verified, the link has expired, or the account is verified but signing in failed.
+
+<Flow
+  caption="What happens after the email link. Each outcome has its own screen."
+  columns={[
+    {
+      title: 'Create account',
+      steps: ['Enter details', 'Check your inbox', 'Open the link'],
+      outcomes: ['Signed in', 'Already verified', 'Link expired', 'Verified, not signed in'],
+    },
+    {
+      title: 'Reset password',
+      steps: ['Enter email', 'Check your inbox', 'Open the link', 'Set password'],
+      outcomes: ['Signed in', 'Link expired'],
+    },
+  ]}
+/>
+
+## Releasing it
+
+The flow moved from Sitecore to the Next.js app, so it ships on demand like the rest of the account area.
+
+The new page only sent people back to relative addresses, so a crafted link couldn’t redirect them to another site. The mobile app, though, signs people in on the website with an absolute return address. The canary is what caught it:
+
+1. The new flow went out as a canary release, to half of visitors on one of the 10 sites.
+2. The mobile app’s absolute return address was rejected, as the check intended.
+3. We switched everyone back to the old page.
+4. We changed the check to also accept absolute addresses on the site’s own domain.
+5. We moved everyone on that site to the new flow.
+6. Once it was stable, I monitored it and took it live on the other 9 sites.
+
+## Results
+
+- Accessibility on the sign-in page: axe issues from 30 to 0, and the Lighthouse accessibility score from 72 to 100.
+- Less friction to create an account: 3 text fields down to 2, with no password to type twice.
+- Verifying an account or setting a password now signs people in, with a confirmation on their bookings page.
+- Every email link outcome has its own screen and a next step.
+- Each newsletter is its own unticked choice, instead of one tick for both.
+- Changes ship on demand, usually two or three times a week, instead of in a fixed weekly release.
+
+## What I learned
+
+- **Removing does most of the work.** Most of the improvement came from taking things away, not adding them.
+- **Plan the unhappy paths early.** Most screens in this flow are for something going wrong, so they shaped the design as much as the happy path.
+- **Before tightening a check, list who depends on it.** The stricter return address check was right, but nobody had listed the mobile app. A small canary turned that into a quick rollback instead of a problem for every visitor.
