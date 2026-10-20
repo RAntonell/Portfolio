@@ -2,7 +2,17 @@
 
 Source for [rogerantonell.com](https://www.rogerantonell.com), my personal site.
 
-Built with [Astro](https://astro.build). Every page is rendered to static HTML at build time. It ships no JavaScript and one self-hosted font file, and follows the system light or dark theme.
+Built with [Astro](https://astro.build). Every page is rendered to static HTML at build time.
+
+## Highlights
+
+- No JavaScript and one self-hosted font file. Pages weigh between about 30 and 160 KB.
+- Scores 100 in all four Lighthouse categories on mobile and desktop, with no layout shift.
+- Screenshots are served at the size the layout shows them, and the first one loads with high priority.
+- Printing the home page gives a CV, with each link’s address written out.
+- Each case study gets a social preview image, drawn at build time.
+- Drafts show up in development only: production builds leave out their pages and images.
+- Follows the system light or dark theme.
 
 ## Development
 
