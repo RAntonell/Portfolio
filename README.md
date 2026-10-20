@@ -2,7 +2,7 @@
 
 Source for [rogerantonell.com](https://www.rogerantonell.com), my personal site.
 
-Built with [Astro](https://astro.build). The page is rendered to static HTML at build time. It ships no JavaScript and one self-hosted font file, and follows the system light or dark theme.
+Built with [Astro](https://astro.build). Every page is rendered to static HTML at build time. It ships no JavaScript and one self-hosted font file, and follows the system light or dark theme.
 
 ## Development
 
@@ -25,6 +25,7 @@ npm run dev
 ```
 public/            Static files copied as-is (favicon, social image, CNAME)
 src/
+  assets/fonts/    Geist font files for the social preview images
   assets/work/     Case study images, optimized at build time
   components/      Page sections and reusable pieces
   content/work/    Case studies, one Markdown or MDX file each
@@ -43,7 +44,7 @@ Each `.md` or `.mdx` file in `src/content/work/` becomes a page at `/work/<file 
 
 Entries with `draft: true` show up in `npm run dev` only. Production builds leave out their pages, their home page entries and their images. To publish one, set `draft: false`.
 
-MDX files can import the flow and timeline diagrams in `src/components/diagrams/`. They render to plain HTML and CSS, so the site still ships no JavaScript.
+MDX files can import the flow, timeline and before and after comparison diagrams in `src/components/diagrams/`. They render to plain HTML and CSS, so the site still ships no JavaScript.
 
 Screenshots go through `src/components/Screens.astro`: one or more images in a row with a caption under them. It sets responsive `sizes` for the layout, and `priority` loads the first one early when it sits at the top of the page.
 
