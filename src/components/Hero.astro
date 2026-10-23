@@ -65,6 +65,10 @@ const workIds = new Set((await getWork()).map(({ id }) => id));
   }
 
   @media print {
+    .intro a {
+      text-decoration: none;
+    }
+
     .links {
       display: grid;
     }

@@ -29,7 +29,7 @@ const work = await getWork();
           experience.map(({ company, url, title, periods, description }) => (
             <Item>
               <Fragment slot="title">
-                <a href={url}>{company}</a>, {title}
+                <a class="company" href={url}>{company}</a>, {title}
               </Fragment>
               <Periods slot="meta" periods={periods} />
               {description}
@@ -65,6 +65,10 @@ const work = await getWork();
   }
 
   @media print {
+    .company {
+      text-decoration: none;
+    }
+
     .skills :global(.item) {
       display: flex;
       gap: 0.5ch;
