@@ -26,7 +26,9 @@ const workIds = new Set((await getWork()).map(({ id }) => id));
     }
   </div>
   <ul class="links">
+    <li class="print-only">{profile.location}, working remotely</li>
     <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+    <li class="print-only"><a href={new URL('/', Astro.site).href}>Portfolio</a></li>
     {
       profile.links.map(({ label, href }) => (
         <li>

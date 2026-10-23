@@ -40,10 +40,13 @@ export const experience: Role[] = [
   },
 ];
 
+const location = 'Girona, Spain';
+
 export const profile = {
   name: 'Roger Antonell',
   role: 'Frontend Developer',
   headline: 'Frontend developer who designs.',
+  location,
   intro: [
     [
       `For ${yearsAcross(experience.flatMap((role) => role.periods))} years I’ve taken features from first sketch to production code. At Sunweb Group I was the main frontend developer on moving the `,
@@ -54,8 +57,7 @@ export const profile = {
     ],
     ['Earlier, at Algrano, my redesign of key pages led to six times more messages between users.'],
   ] satisfies IntroSegment[][],
-  metaDescription:
-    'Frontend developer who designs. Design systems, React, Next.js and TypeScript. Based in Girona, Spain, working remotely.',
+  metaDescription: `Frontend developer who designs. Design systems, React, Next.js and TypeScript. Based in ${location}, working remotely.`,
   email: 'roger.antonell@gmail.com',
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/roger-antonell-huerta' },

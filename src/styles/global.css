@@ -151,6 +151,12 @@ a:hover {
   white-space: nowrap;
 }
 
+@media screen {
+  .print-only {
+    display: none;
+  }
+}
+
 @page {
   size: A4;
   margin: 2cm;
