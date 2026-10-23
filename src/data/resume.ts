@@ -26,7 +26,7 @@ export const experience: Role[] = [
     company: 'Sunweb Group',
     url: 'https://www.sunwebgroup.com/',
     title: 'Frontend Developer',
-    periods: [{ start: '2019-06', end: '2020-08' }, { start: '2021-01' }],
+    periods: [{ start: '2021-01' }],
     description:
       'Build the customer account area and contribute to the multi-platform design system. Design and ship pages and features end to end, across many product teams. Moved the account area from Sitecore MVC to Next.js across 10 sites, market by market.',
   },
@@ -37,6 +37,14 @@ export const experience: Role[] = [
     periods: [{ start: '2020-09', end: '2020-12' }],
     description:
       'Designed and built features end to end. Helped set up the design system, with documentation and a scalable foundation.',
+  },
+  {
+    company: 'Sunweb Group',
+    url: 'https://www.sunwebgroup.com/',
+    title: 'Frontend Developer',
+    periods: [{ start: '2019-06', end: '2020-08' }],
+    description:
+      'Built user-facing features across the product in small, cross-functional teams. Helped build the multi-platform design system, working closely with designers to turn ideas into reusable components.',
   },
 ];
 
