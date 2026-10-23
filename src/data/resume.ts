@@ -36,7 +36,7 @@ export const experience: Role[] = [
     title: 'Frontend Developer',
     periods: [{ start: '2020-09', end: '2020-12' }],
     description:
-      'Designed and built features end to end. Helped set up the design system, with documentation and a scalable foundation.',
+      'Designed and built features end to end, and my redesign of key pages led to six times more messages between users. Helped set up the design system, with documentation and a scalable foundation.',
   },
   {
     company: 'Sunweb Group',
