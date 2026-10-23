@@ -2,6 +2,7 @@ import { type Period, yearsAcross } from '../lib/dates';
 
 export interface Role {
   company: string;
+  url: string;
   title: string;
   periods: Period[];
   description: string;
@@ -23,6 +24,7 @@ export interface Education {
 export const experience: Role[] = [
   {
     company: 'Sunweb Group',
+    url: 'https://www.sunwebgroup.com/',
     title: 'Frontend Developer',
     periods: [{ start: '2019-06', end: '2020-08' }, { start: '2021-01' }],
     description:
@@ -30,6 +32,7 @@ export const experience: Role[] = [
   },
   {
     company: 'Algrano',
+    url: 'https://algrano.com/',
     title: 'Frontend Developer',
     periods: [{ start: '2020-09', end: '2020-12' }],
     description:

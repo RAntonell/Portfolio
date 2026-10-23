@@ -26,8 +26,11 @@ const work = await getWork();
 
       <Section id="experience" title="Experience">
         {
-          experience.map(({ company, title, periods, description }) => (
-            <Item title={`${company}, ${title}`}>
+          experience.map(({ company, url, title, periods, description }) => (
+            <Item>
+              <Fragment slot="title">
+                <a href={url}>{company}</a>, {title}
+              </Fragment>
               <Periods slot="meta" periods={periods} />
               {description}
             </Item>
