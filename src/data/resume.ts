@@ -12,6 +12,8 @@ export interface SkillGroup {
   items: string[];
 }
 
+export type IntroSegment = string | { text: string; work: string };
+
 export interface Education {
   title: string;
   place: string;
@@ -40,9 +42,15 @@ export const profile = {
   role: 'Frontend Developer',
   headline: 'Frontend developer who designs.',
   intro: [
-    `For ${yearsAcross(experience.flatMap((role) => role.periods))} years I’ve taken features from first sketch to production code. At Sunweb Group I was the main frontend developer on moving the customer account area to Next.js across 10 travel sites, and I designed several of its pages, including booking details and sign in.`,
-    'Earlier, at Algrano, my redesign of key pages led to six times more messages between users.',
-  ],
+    [
+      `For ${yearsAcross(experience.flatMap((role) => role.periods))} years I’ve taken features from first sketch to production code. At Sunweb Group I was the main frontend developer on moving the `,
+      { text: 'customer account area', work: 'my-account' },
+      ' to Next.js across 10 travel sites, and I designed several of its pages, including booking details and ',
+      { text: 'sign in', work: 'sign-in' },
+      '.',
+    ],
+    ['Earlier, at Algrano, my redesign of key pages led to six times more messages between users.'],
+  ] satisfies IntroSegment[][],
   metaDescription:
     'Frontend developer who designs. Design systems, React, Next.js and TypeScript. Based in Girona, Spain, working remotely.',
   email: 'roger.antonell@gmail.com',

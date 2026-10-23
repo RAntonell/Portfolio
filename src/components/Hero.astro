@@ -1,12 +1,29 @@
 ---
 import { profile } from '../data/resume';
+import { getWork } from '../lib/work';
+
+const workIds = new Set((await getWork()).map(({ id }) => id));
 ---
 
 <header>
   <p><strong>{profile.name}</strong></p>
   <h1>{profile.headline}</h1>
   <div class="intro">
-    {profile.intro.map((paragraph) => <p>{paragraph}</p>)}
+    {
+      profile.intro.map((paragraph) => (
+        <p>
+          {paragraph.map((segment) =>
+            typeof segment === 'string' ? (
+              segment
+            ) : workIds.has(segment.work) ? (
+              <a href={`/work/${segment.work}/`}>{segment.text}</a>
+            ) : (
+              segment.text
+            ),
+          )}
+        </p>
+      ))
+    }
   </div>
   <ul class="links">
     <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
