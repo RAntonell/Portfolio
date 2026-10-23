@@ -28,7 +28,7 @@ export const experience: Role[] = [
     title: 'Frontend Developer',
     periods: [{ start: '2021-01' }],
     description:
-      'Build the customer account area and contribute to the multi-platform design system. Design and ship pages and features end to end, across many product teams. Moved the account area from Sitecore MVC to Next.js across 10 sites, market by market.',
+      'Migrated the customer account area from Sitecore MVC to Next.js, one market at a time across 10 sites, as its main frontend developer. Designed and built its booking details and sign in pages.',
   },
   {
     company: 'Algrano',
@@ -36,7 +36,7 @@ export const experience: Role[] = [
     title: 'Frontend Developer',
     periods: [{ start: '2020-09', end: '2020-12' }],
     description:
-      'Designed and built features end to end, and my redesign of key pages led to six times more messages between users. Helped set up the design system, with documentation and a scalable foundation.',
+      'Designed and built features, including a redesign of key pages that led to six times more messages between users. Started the design system, with a Figma file and a Storybook for its first components.',
   },
   {
     company: 'Sunweb Group',
