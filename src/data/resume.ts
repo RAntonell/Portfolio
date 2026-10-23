@@ -77,7 +77,7 @@ export const profile = {
 export const skills: SkillGroup[] = [
   {
     title: 'Frontend',
-    items: ['React', 'Next.js', 'TypeScript', 'CSS', 'Jest'],
+    items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Tailwind CSS', 'REST APIs', 'Jest', 'Git'],
   },
   {
     title: 'Design',
