@@ -2,16 +2,26 @@
 interface Props {
   title: string;
   level?: 2 | 3;
-  link?: { href: string; label: string };
+  href?: string;
 }
 
-const { title, level = 3, link } = Astro.props;
+const { title, level = 3, href } = Astro.props;
 const Heading = `h${level}` as const;
-const printUrl = link && new URL(link.href, Astro.site).href;
+const printUrl = href && new URL(href, Astro.site).href;
 ---
 
-<div class="item">
-  <Heading>{title}</Heading>
+<div class:list={['item', { linked: href }]}>
+  <Heading>
+    {
+      href ? (
+        <a href={href} data-print-url={printUrl}>
+          {title}
+        </a>
+      ) : (
+        title
+      )
+    }
+  </Heading>
   {
     Astro.slots.has('meta') && (
       <p class="muted">
@@ -26,16 +36,6 @@ const printUrl = link && new URL(link.href, Astro.site).href;
       </p>
     )
   }
-  {
-    link && (
-      <p class="body">
-        <a href={link.href} data-print-url={printUrl}>
-          {link.label}
-          <span class="visually-hidden">: {title}</span>
-        </a>
-      </p>
-    )
-  }
 </div>
 
 <style>
@@ -47,13 +47,37 @@ const printUrl = link && new URL(link.href, Astro.site).href;
     margin-top: var(--gap-tight);
   }
 
+  .linked {
+    position: relative;
+  }
+
+  .linked a::before {
+    content: '';
+    position: absolute;
+    inset: calc(-1 * var(--gap-tight));
+    border-radius: var(--radius);
+  }
+
+  .linked a:focus-visible {
+    outline: none;
+  }
+
+  .linked a:focus-visible::before {
+    outline: 2px solid var(--fg);
+  }
+
   @media print {
     .item {
       break-inside: avoid;
     }
 
+    .linked a::before {
+      content: none;
+    }
+
     a[data-print-url]::after {
       content: ' (' attr(data-print-url) ')';
+      font-weight: var(--weight-regular);
     }
   }
 </style>
