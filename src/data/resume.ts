@@ -36,7 +36,7 @@ export const experience: Role[] = [
     title: 'Frontend Developer',
     periods: [{ start: '2020-09', end: '2020-12' }],
     description:
-      'Designed and built features, including a redesign of key pages that led to six times more messages between users. Started the design system, with a Figma file and a Storybook for its first components.',
+      'Designed and built features, including a redesign of key pages that led to six times more messages between users. Started its design system in Figma and Storybook.',
   },
   {
     company: 'Sunweb Group',
