@@ -1,0 +1,136 @@
+---
+title: Rebuilding My Account for 10 travel sites
+description: Migrated Sunweb Group’s customer account area to Next.js, market by market, and redesigned booking details.
+company: Sunweb Group
+role: Frontend Developer
+period: 2025–2026
+glance:
+  - label: Role
+    value: Main frontend developer on the new account area, in a team of up to six. Also ran the market-by-market rollouts.
+  - label: Scope
+    value: 10 sites, 2 brands and 7 countries, moved from Sitecore MVC to Next.js.
+  - label: Designed
+    value: Booking details. Cut repeated and misplaced information, and redesigned flight information and traveller editing.
+  - label: Result
+    value: UI changes ship on their own, on demand, instead of in the weekly Sitecore release. No big-bang launch.
+order: 1
+draft: true
+---
+import Screens from '../../components/Screens.astro';
+import Comparison from '../../components/diagrams/Comparison.astro';
+import Flow from '../../components/diagrams/Flow.astro';
+import Timeline from '../../components/diagrams/Timeline.astro';
+import beforeBookingDetails from '../../assets/work/my-account/before-booking-details.webp';
+import afterBookingDetails from '../../assets/work/my-account/after-booking-details.webp';
+import editTravellersCard from '../../assets/work/my-account/edit-travellers-card.webp';
+import editTravellerSheet from '../../assets/work/my-account/edit-traveller-sheet.webp';
+import editTravellerForm from '../../assets/work/my-account/edit-traveller-form.webp';
+import travellerFlights from '../../assets/work/my-account/traveller-flights.webp';
+import preferencesSheet from '../../assets/work/my-account/preferences-sheet.webp';
+import specialBaggageSheet from '../../assets/work/my-account/special-baggage-sheet.webp';
+import cancellationSheet from '../../assets/work/my-account/cancellation-sheet.webp';
+
+<Screens
+  priority
+  caption="Before: booking details on Sitecore, with travellers as a plain list and each flight squeezed into one row."
+  screens={[{ src: beforeBookingDetails, alt: 'Old booking details page: hotel photo, a list of travellers to expand, one compact row per flight, and payment and booking summary on the side' }]}
+/>
+
+<Screens
+  caption="After: each part of the booking in its own card, travellers with their age, and each flight with its times and airports."
+  screens={[{ src: afterBookingDetails, alt: 'New booking details page: booking number above the hotel name, a travellers card with ages and a view button each, a card per flight direction, and payment and hotel cards on the side' }]}
+/>
+
+## The problem
+
+After booking, customers come back to the account area to check their trip and make changes. It ran on Sitecore with ASP.NET MVC and Razor views. Even a change that only touched the UI went through two repositories, an extra integration step in Sitecore, and the weekly release.
+
+<Comparison
+  caption="What shipping one UI change took, before and after."
+  before="Before: Sitecore MVC"
+  after="After: Next.js"
+  rows={[
+    { label: 'Change', before: 'Razor views and styles, in the design system repo', after: 'The page, in the Next.js app' },
+    { label: 'Package', before: 'An npm package for styles and scripts, and a NuGet package for the Razor views' },
+    { label: 'Integrate', before: 'Pull the new packages into the Sitecore solution' },
+    { label: 'Release', before: 'Once a week, on a fixed day', after: 'When ready, usually two or three times a week' },
+    { label: 'Go live', before: 'With the release', after: 'Per market, with a feature flag' },
+  ]}
+/>
+
+## How we moved
+
+We replaced the account area step by step, so customers never saw one big switch.
+
+- **Page by page.** Simplest pages first, so we learned the new setup before the complex ones.
+- **A bug bash first.** Before booking details went live, the team tested it together. It found no showstoppers, and everything it found was fixed within a week.
+- **Market by market.** I ran the rollouts behind feature flags, starting with Belgium and ending with Eliza.
+- **A way back.** During the rollout, a banner let customers open the old version. It kept them covered if the new pages had a bug, and showed how the new design landed: fewer than 3 in 100 visits went back.
+- **Eyes on every release.** A New Relic dashboard tracked errors and Core Web Vitals for each market as it went live. It caught 500s from Sitecore endpoints that couldn't resolve the site, and a big layout shift on the new booking details page. We fixed both.
+- **A clean finish.** Once every market was live, we removed the flags and the legacy routes.
+
+<Timeline
+  caption="How the account area went live in 2026."
+  from="2026-01"
+  to="2026-10"
+  rows={[
+    { label: 'Marketing preferences', start: '2026-01-07' },
+    { label: 'Profile', start: '2026-01-13', end: '2026-02-05' },
+    { label: 'Bookings overview', start: '2026-02-23', end: '2026-04-02' },
+    { label: 'Booking details', start: '2026-07-20', end: '2026-10-13' },
+  ]}
+/>
+
+## Booking details
+
+### Editing travellers without leaving the booking
+
+Editing a traveller used to be a separate page. I moved it into a sheet on booking details: one page fewer and several steps shorter. Fields that can’t be saved online become a request to customer service, sent from the same form.
+
+<Flow
+  caption="Editing a traveller, before and after."
+  columns={[
+    { title: 'Before', steps: ['Booking details', 'Open the edit page', 'Save', 'Go back to the booking'] },
+    { title: 'After', steps: ['Booking details', 'Edit in a sheet', 'Save, still on the booking'] },
+  ]}
+/>
+
+<Screens
+  caption="On a phone: the travellers card, a traveller’s details in a sheet, and the edit form, all on the booking."
+  screens={[{ src: editTravellersCard, alt: 'Booking details on a phone, with the travellers card and a View and edit button for each traveller' }, { src: editTravellerSheet, alt: 'Sheet with one traveller’s date of birth, address, email and phone numbers, and an Edit button' }, { src: editTravellerForm, alt: 'Edit form in the same sheet, with salutation, first name and surname, and Save and Cancel buttons' }]}
+/>
+
+### Flight information
+
+This is where I spent most of my time, because one booking can mix airlines, booking references and stopovers.
+
+- When travellers in one booking fly on different flights, each gets their own section.
+- Each direction says whether it’s direct or how many stopovers it has, with the waiting time between flights.
+- Each flight shows its booking reference, luggage, and the airline’s links for seats and check-in.
+- On a phone, outbound and return sit in tabs, one at a time.
+
+<Screens
+  caption="A traveller on their own flights, with a stopover in Athens each way and seat and check-in links for every flight."
+  screens={[{ src: travellerFlights, alt: 'Flights for Sam Rivera: Brussels to Chania and back with Aegean, each with one stopover in Athens and its waiting time, luggage, and seat reservation and online check-in links per flight' }]}
+/>
+
+### Changes happen in place
+
+Preferences, luggage, cancelling and rebooking all open in a sheet over the booking, so every action works the same way.
+
+<Screens
+  caption="On a phone: preferences, special baggage and cancelling, each in a sheet over the booking."
+  screens={[{ src: preferencesSheet, alt: 'Edit preferences sheet with a search field and ticked requests such as low floor and a baby cot, and a Save button' }, { src: specialBaggageSheet, alt: 'Special baggage sheet asking which traveller and what kind of luggage, with Submit and Cancel buttons' }, { src: cancellationSheet, alt: 'Cancellation sheet with three choices: exchange the booking, cancel some travellers, or cancel the whole booking, and a Continue button' }]}
+/>
+
+## Results
+
+- Live on 10 sites, 2 brands and 7 countries, with no big-bang launch.
+- UI changes ship on demand, usually two or three times a week, instead of in a fixed weekly release.
+- Editing a traveller no longer needs a separate page, and 96% of edits saved from the website go through.
+- The page no longer jumps while it loads: layout shift (CLS, 75th percentile) went from 0.12 on the old page to almost zero.
+
+## What I learned
+
+- **Small markets first.** Problems stayed small and were fixed before the next market.
+- **Design for messy data.** Most of the flight work was the edge cases.
