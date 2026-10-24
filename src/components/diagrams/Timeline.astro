@@ -30,7 +30,7 @@ const percentOf = (time: number) => `${((time - rangeStart) / (rangeEnd - rangeS
 
 const monthLabel = new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' });
 const ticks: { label: string; position: string }[] = [];
-for (let time = rangeStart; addMonths(time, 3) <= rangeEnd; time = addMonths(time, 3)) {
+for (let time = rangeStart; time < rangeEnd; time = addMonths(time, 3)) {
   ticks.push({ label: monthLabel.format(time), position: percentOf(time) });
 }
 ---
@@ -76,21 +76,23 @@ for (let time = rangeStart; addMonths(time, 3) <= rangeEnd; time = addMonths(tim
   }
 
   li + li {
-    margin-top: var(--gap-text);
+    margin-top: var(--gap-block);
   }
 
   .track {
     position: relative;
     height: var(--size);
-    margin-top: var(--gap-tight);
+    margin-top: var(--gap-text);
   }
 
   .track::before {
     content: '';
     position: absolute;
-    inset-inline: 0;
-    top: calc(50% - 0.5px);
-    border-top: 1px solid var(--line);
+    inset-block: 0;
+    inset-inline: calc(var(--size) / -2);
+    border-radius: var(--size);
+    background: var(--line);
+    print-color-adjust: exact;
   }
 
   .bar {
@@ -105,14 +107,32 @@ for (let time = rangeStart; addMonths(time, 3) <= rangeEnd; time = addMonths(tim
 
   .axis {
     position: relative;
-    height: var(--leading-base);
-    margin-top: var(--gap-tight);
+    height: calc(var(--size) + var(--leading-small));
+    margin-top: var(--gap-text);
+    font-size: var(--text-small);
+    line-height: var(--leading-small);
+  }
+
+  .axis::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    inset-inline: calc(var(--size) / -2);
+    border-top: 1px solid var(--line);
   }
 
   .axis span {
     position: absolute;
     inset-inline-start: var(--position);
-    padding-inline-start: var(--gap-tight);
+    padding-top: var(--size);
+  }
+
+  .axis span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    height: var(--size);
     border-inline-start: 1px solid var(--line);
   }
 
