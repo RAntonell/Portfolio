@@ -64,8 +64,8 @@ const work = await getWork();
     margin-top: var(--gap-section);
   }
 
-  .skills :global(.item + .item) {
-    margin-top: var(--gap-text);
+  .skills {
+    --item-gap: var(--gap-text);
   }
 
   @media print {
@@ -78,8 +78,8 @@ const work = await getWork();
       gap: 0.5ch;
     }
 
-    .skills :global(.item + .item) {
-      margin-top: var(--gap-tight);
+    .skills {
+      --item-gap: var(--gap-tight);
     }
 
     .skills :global(h3::after) {

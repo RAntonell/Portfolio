@@ -42,7 +42,7 @@ const printUrl = href && new URL(href, Astro.site).href;
 
 <style>
   .item + .item {
-    margin-top: var(--gap-block);
+    margin-top: var(--item-gap, var(--gap-block));
   }
 
   .body {
