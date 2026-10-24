@@ -103,4 +103,8 @@ const { Content } = await render(entry);
   .prose > :global(figure + :not(h2)) {
     margin-top: var(--gap-block);
   }
+
+  .prose > :global(figure + h3) {
+    margin-top: var(--gap-section);
+  }
 </style>
