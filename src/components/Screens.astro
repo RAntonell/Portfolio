@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import { blurredPlaceholder } from '../lib/placeholder';
 
 interface Screen {
   src: ImageMetadata;
@@ -31,11 +32,23 @@ const sizes = [
   `(min-width: 37rem) ${columnRem(35)}`,
   stacked ? `min(calc(100vw - 2rem), ${stackedRem}rem)` : 'calc(100vw - 2rem)',
 ].join(', ');
+const placeholders = await Promise.all(screens.map(({ src }) => blurredPlaceholder(src)));
 ---
 
 <figure>
   <div class:list={['screens', { stacked }]} style={{ '--stacked-width': `${stackedRem}rem` }}>
-    {screens.map(({ src, alt }) => <Image src={src} alt={alt} sizes={sizes} widths={widthsFor(src.width)} priority={priority} />)}
+    {
+      screens.map(({ src, alt }, index) => (
+        <Image
+          src={src}
+          alt={alt}
+          sizes={sizes}
+          widths={widthsFor(src.width)}
+          priority={priority}
+          style={{ backgroundImage: placeholders[index] }}
+        />
+      ))
+    }
   </div>
   <figcaption class="muted">{caption}</figcaption>
 </figure>
@@ -57,6 +70,8 @@ const sizes = [
     border-radius: var(--radius);
     outline: 1px solid var(--line);
     outline-offset: -1px;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .stacked img {
