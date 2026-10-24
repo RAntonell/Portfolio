@@ -16,7 +16,6 @@ const caseStudyLinks = (ids: string[] = []) =>
       const url = new URL(`/work/${id}/`, Astro.site);
       return { href: url.href, text: `${url.host.replace(/^www\./, '')}${url.pathname.replace(/\/$/, '')}` };
     });
-const printTitle = `${profile.name.replaceAll(' ', '-')}-CV`;
 ---
 
 <Base>
@@ -77,11 +76,6 @@ const printTitle = `${profile.name.replaceAll(' ', '-')}-CV`;
       <a href={profile.source}>Source on GitHub</a>
     </footer>
   </div>
-  <script is:inline define:vars={{ printTitle }}>
-    const screenTitle = document.title;
-    addEventListener('beforeprint', () => (document.title = printTitle));
-    addEventListener('afterprint', () => (document.title = screenTitle));
-  </script>
 </Base>
 
 <style>
