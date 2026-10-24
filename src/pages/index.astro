@@ -9,6 +9,13 @@ import Base from '../layouts/Base.astro';
 import { getWork } from '../lib/work';
 
 const work = await getWork();
+const caseStudyLinks = (ids: string[] = []) =>
+  work
+    .filter(({ id }) => ids.includes(id))
+    .map(({ id }) => {
+      const url = new URL(`/work/${id}/`, Astro.site);
+      return { href: url.href, text: `${url.host.replace(/^www\./, '')}${url.pathname.replace(/\/$/, '')}` };
+    });
 ---
 
 <Base>
@@ -26,13 +33,25 @@ const work = await getWork();
 
       <Section id="experience" title="Experience">
         {
-          experience.map(({ company, url, title, periods, description }) => (
+          experience.map(({ company, url, title, periods, description, work: ids }) => (
             <Item>
               <Fragment slot="title">
                 <a class="company" href={url}>{company}</a>, {title}
               </Fragment>
               <Periods slot="meta" periods={periods} />
               {description}
+              {caseStudyLinks(ids).length > 0 && (
+                <span class="print-only">
+                  {' Case studies: '}
+                  {caseStudyLinks(ids).map(({ href, text }, index) => (
+                    <>
+                      {index > 0 && ' and '}
+                      <a href={href}>{text}</a>
+                    </>
+                  ))}
+                  {'.'}
+                </span>
+              )}
             </Item>
           ))
         }

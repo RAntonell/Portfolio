@@ -6,6 +6,7 @@ export interface Role {
   title: string;
   periods: Period[];
   description: string;
+  work?: string[];
 }
 
 export interface SkillGroup {
@@ -29,6 +30,7 @@ export const experience: Role[] = [
     periods: [{ start: '2021-01' }],
     description:
       'Migrated the customer account area from Sitecore MVC to Next.js, one market at a time across 10 sites, as its main frontend developer. Designed and built its booking details page and sign-in flow.',
+    work: ['my-account', 'sign-in'],
   },
   {
     company: 'Algrano',
