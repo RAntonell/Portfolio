@@ -1,13 +1,18 @@
 ---
 import { type CollectionEntry, render } from 'astro:content';
+import { profile } from '../data/resume';
+import Item from './Item.astro';
+import Section from './Section.astro';
 
 interface Props {
   entry: CollectionEntry<'work'>;
+  next?: CollectionEntry<'work'>;
 }
 
-const { entry } = Astro.props;
+const { entry, next } = Astro.props;
 const { title, company, role, period, glance, draft } = entry.data;
 const { Content } = await render(entry);
+const linkedIn = profile.links.find(({ label }) => label === 'LinkedIn');
 ---
 
 <header>
@@ -33,9 +38,40 @@ const { Content } = await render(entry);
   <Content />
 </article>
 
+{
+  next && (
+    <Section id="next" title="Next case study">
+      <Item title={next.data.title} href={`/work/${next.id}/`}>
+        <Fragment slot="meta">
+          {next.data.company}, {next.data.period}
+        </Fragment>
+        {next.data.description}
+      </Item>
+    </Section>
+  )
+}
+
+<Section id="contact" title="Get in touch">
+  <ul class="contact">
+    <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+    {linkedIn && <li><a href={linkedIn.href}>{linkedIn.label}</a></li>}
+  </ul>
+</Section>
+
 <style>
   header p {
     margin-top: var(--gap-tight);
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-tight) var(--gap-text);
+  }
+
+  .contact a {
+    display: inline-block;
+    overflow-wrap: anywhere;
   }
 
   .glance {

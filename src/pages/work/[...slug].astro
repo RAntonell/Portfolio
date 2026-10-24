@@ -6,7 +6,7 @@ import { profile } from '../../data/resume';
 import Subpage from '../../layouts/Subpage.astro';
 import { getWork } from '../../lib/work';
 
-type Props = { entries: CollectionEntry<'work'>[] } | { entry: CollectionEntry<'work'> };
+type Props = { entries: CollectionEntry<'work'>[] } | { entry: CollectionEntry<'work'>; next?: CollectionEntry<'work'> };
 
 export async function getStaticPaths() {
   const entries = await getWork();
@@ -14,7 +14,10 @@ export async function getStaticPaths() {
 
   return [
     { params: { slug: undefined }, props: { entries } },
-    ...entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } })),
+    ...entries.map((entry, index) => {
+      const next = entries.length > 1 ? entries[(index + 1) % entries.length] : undefined;
+      return { params: { slug: entry.id }, props: { entry, next } };
+    }),
   ];
 }
 
@@ -29,7 +32,7 @@ const props = Astro.props;
       type="article"
       image={{ path: `/og/work/${props.entry.id}.png`, alt: props.entry.data.title }}
     >
-      <CaseStudy entry={props.entry} />
+      <CaseStudy entry={props.entry} next={props.next} />
     </Subpage>
   ) : (
     <Subpage title={`Work | ${profile.name}`} description={`Case studies by ${profile.name}, a frontend developer who designs.`} type="website">
