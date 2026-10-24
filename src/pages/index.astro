@@ -64,6 +64,10 @@ const work = await getWork();
     margin-top: var(--gap-section);
   }
 
+  .skills :global(.item + .item) {
+    margin-top: var(--gap-text);
+  }
+
   @media print {
     .company {
       text-decoration: none;
