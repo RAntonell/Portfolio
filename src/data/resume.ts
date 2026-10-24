@@ -28,7 +28,7 @@ export const experience: Role[] = [
     title: 'Frontend Developer',
     periods: [{ start: '2021-01' }],
     description:
-      'Migrated the customer account area from Sitecore MVC to Next.js, one market at a time across 10 sites, as its main frontend developer. Designed and built its booking details and sign in pages.',
+      'Migrated the customer account area from Sitecore MVC to Next.js, one market at a time across 10 sites, as its main frontend developer. Designed and built its booking details page and sign-in flow.',
   },
   {
     company: 'Algrano',
@@ -59,8 +59,8 @@ export const profile = {
     [
       `For ${yearsAcross(experience.flatMap((role) => role.periods))} years I’ve taken features from first sketch to production code. At Sunweb Group I was the main frontend developer on moving the `,
       { text: 'customer account area', work: 'my-account' },
-      ' to Next.js across 10 travel sites, and I designed several of its pages, including booking details and ',
-      { text: 'sign in', work: 'sign-in' },
+      ' to Next.js across 10 travel sites, and I designed parts of it, including booking details and the ',
+      { text: 'sign-in flow', work: 'sign-in' },
       '.',
     ],
     ['Earlier, at Algrano, my redesign of key pages led to six times more messages between users.'],
