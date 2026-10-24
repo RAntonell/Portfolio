@@ -3,7 +3,6 @@ import { type YearMonth, type YearMonthDay, formatDay } from '../../lib/dates';
 
 interface Row {
   label: string;
-  note: string;
   start: YearMonthDay;
   end?: YearMonthDay;
 }
@@ -38,7 +37,7 @@ for (let time = rangeStart; time < rangeEnd; time = addMonths(time, 3)) {
 <figure>
   <ol>
     {
-      rows.map(({ label, note, start, end }) => (
+      rows.map(({ label, start, end }) => (
         <li>
           <p>
             <strong>{label}</strong>
@@ -52,7 +51,6 @@ for (let time = rangeStart; time < rangeEnd; time = addMonths(time, 3)) {
                 <time datetime={end}>{formatDay(end)}</time>
               </>
             )}
-            {`, ${note}`}
           </p>
           <div class="track" aria-hidden="true">
             <span
