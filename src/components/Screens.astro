@@ -16,22 +16,25 @@ interface Props {
 const { screens, caption, priority = false } = Astro.props;
 
 const count = screens.length;
+const stacked = count > 1;
+const stackedRem = 18;
 const gaps = count - 1;
 const column = (rowRem: number) => (rowRem - gaps) / count;
 const columnRem = (rowRem: number) => `${Number(column(rowRem).toFixed(2))}rem`;
 const densities = [1, 1.5, 2];
-const layoutWidths = [35, 52].flatMap((row) => densities.map((density) => Math.round(column(row) * 16 * density)));
+const layoutRems = [column(35), column(52), ...(stacked ? [stackedRem] : [])];
+const layoutWidths = layoutRems.flatMap((rem) => densities.map((density) => Math.round(rem * 16 * density)));
 const widthsFor = (source: number) =>
   [...new Set(layoutWidths.filter((width) => width < source).concat(source))].sort((a, b) => a - b);
 const sizes = [
   `(min-width: 64rem) ${columnRem(52)}`,
   `(min-width: 37rem) ${columnRem(35)}`,
-  `calc((100vw - ${2 + gaps}rem) / ${count})`,
+  stacked ? `min(calc(100vw - 2rem), ${stackedRem}rem)` : 'calc(100vw - 2rem)',
 ].join(', ');
 ---
 
 <figure>
-  <div class="screens">
+  <div class:list={['screens', { stacked }]} style={{ '--stacked-width': `${stackedRem}rem` }}>
     {screens.map(({ src, alt }) => <Image src={src} alt={alt} sizes={sizes} widths={widthsFor(src.width)} priority={priority} />)}
   </div>
   <figcaption class="muted">{caption}</figcaption>
@@ -40,10 +43,11 @@ const sizes = [
 <style>
   .screens {
     display: grid;
-    grid-auto-columns: minmax(0, 1fr);
-    grid-auto-flow: column;
-    align-items: start;
     gap: var(--gap-text);
+  }
+
+  .stacked {
+    justify-items: center;
   }
 
   img {
@@ -53,6 +57,22 @@ const sizes = [
     border-radius: var(--radius);
     outline: 1px solid var(--line);
     outline-offset: -1px;
+  }
+
+  .stacked img {
+    width: min(100%, var(--stacked-width));
+  }
+
+  @media (min-width: 37rem) {
+    .screens {
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+      align-items: start;
+    }
+
+    .stacked img {
+      width: 100%;
+    }
   }
 
   figcaption {
