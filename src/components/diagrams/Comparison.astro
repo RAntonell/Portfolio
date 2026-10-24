@@ -14,10 +14,11 @@ interface Props {
 }
 
 const { before, after, rows, caption, removed = 'Not needed' } = Astro.props;
+const captionId = `comparison-${caption.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
 ---
 
 <figure>
-  <div role="table" aria-label={caption}>
+  <div role="table" aria-labelledby={captionId}>
     <div role="row" class="row head muted">
       <span role="columnheader" class="label"><span class="visually-hidden">Step</span></span>
       <span role="columnheader">{before}</span>
@@ -37,7 +38,7 @@ const { before, after, rows, caption, removed = 'Not needed' } = Astro.props;
       ))
     }
   </div>
-  <figcaption class="muted">{caption}</figcaption>
+  <figcaption id={captionId} class="muted">{caption}</figcaption>
 </figure>
 
 <style>
