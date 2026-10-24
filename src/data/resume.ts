@@ -93,6 +93,6 @@ export const skills: SkillGroup[] = [
 
 export const education: Education = {
   title: 'Professional Certificate in Web Application Development',
-  place: 'Vic, Spain',
+  place: 'Fundació Mil·lenari, Vic, Spain',
   periods: [{ start: '2015-03', end: '2016-02' }],
 };
